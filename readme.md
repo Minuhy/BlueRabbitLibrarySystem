@@ -23,40 +23,40 @@
 6. MySQL5.7
 
 ##三、软件或项目截图及说明
-![登录界面](images/loginScan.jpg)
+![登录界面](https://github.com/Minuy/BlueRabbitLibrarySystem/tree/master/images/loginScan.jpg)
 <center>登录界面</center>
 
-![帮助界面](images/helpScan.jpg)
+![帮助界面](https://github.com/Minuy/BlueRabbitLibrarySystem/tree/master/images/helpScan.jpg)
 <center>帮助界面：主要显示一些环境相关的帮助</center>
 
-![主界面](images/main1Scan.jpg)
+![主界面](https://github.com/Minuy/BlueRabbitLibrarySystem/tree/master/images/main1Scan.jpg)
 <center>主界面：主界面按钮获得焦点后会有动效（灵感来源于王者荣耀界面布局）</center>
 
-![界面动效](images/main2Scan.jpg)
+![界面动效](https://github.com/Minuy/BlueRabbitLibrarySystem/tree/master/images/main2Scan.jpg)
 <center>界面动效：图书管理获得焦点</center>
 
-![个人信息界面](images/personScan.jpg)
+![个人信息界面](https://github.com/Minuy/BlueRabbitLibrarySystem/tree/master/images/personScan.jpg)
 <center>个人信息查看和修改界面（灵感来源于QQ资料界面）</center>
 
-![图书管理界面](images/BookManage1Scan.jpg)
+![图书管理界面](https://github.com/Minuy/BlueRabbitLibrarySystem/tree/master/images/BookManage1Scan.jpg)
 <center>图书管理界面：双击条目能查看详情，实现搜索功能，增删改功能，使用DAO层和JavaBean处理</center>
 
-![图书详情界面](images/BookLookAndSeach.jpg)
+![图书详情界面](https://github.com/Minuy/BlueRabbitLibrarySystem/tree/master/images/BookLookAndSeach.jpg)
 <center>图书详情查看及搜索功能展示</center>
 
-![图书添加界面](images/BookAdd.jpg)
+![图书添加界面](https://github.com/Minuy/BlueRabbitLibrarySystem/tree/master/images/BookAdd.jpg)
 <center>图书修改或增加有数据合法性校验（有模式窗口，只能操作最前的窗口）</center>
 
-![读者管理界面](images/ReaderManageScan.jpg)
+![读者管理界面](https://github.com/Minuy/BlueRabbitLibrarySystem/tree/master/images/ReaderManageScan.jpg)
 <center>读者管理：同样实现了增删改查和搜索功能</center>
 
-![管理员权限](images/AdminNoSerpu.jpg)
+![管理员权限](https://github.com/Minuy/BlueRabbitLibrarySystem/tree/master/images/AdminNoSerpu.jpg)
 <center>管理员不能进行人员管理</center>
 
-![管理员管理](images/AdminManageScan.jpg)
+![管理员管理](https://github.com/Minuy/BlueRabbitLibrarySystem/tree/master/images/AdminManageScan.jpg)
 <center>管理员管理：admin不是超级管理员，换了个账号，可直接改其他管理员信息（密码是MD5加密后保存的）</center>
 
-![借阅管理](images/BookOther.jpg)
+![借阅管理](https://github.com/Minuy/BlueRabbitLibrarySystem/tree/master/images/BookOther.jpg)
 <center>借阅管理（实训结束后没有继续完善）</center>
 ##四、数据库设计
 1. 创建数据库
@@ -75,7 +75,7 @@ Password varchar(32) not null,
 ifsuper boolean not null
 )default charset=utf8;
 ```
-![管理员表](images/SQLAdmin.jpg)
+![管理员表](https://github.com/Minuy/BlueRabbitLibrarySystem/tree/master/images/SQLAdmin.jpg)
 
 3. 图书信息表
 ```SQL
@@ -103,7 +103,7 @@ BookPage int comment '页数' ,
 WordsNumber varchar(20) comment '字数'
 )default charset=utf8 comment '图书信息表'; 
 ```
-![图书信息表](images/SQLBook.jpg)
+![图书信息表](https://github.com/Minuy/BlueRabbitLibrarySystem/tree/master/images/SQLBook.jpg)
 
 4. 读者信息表
 ```SQL
@@ -117,17 +117,17 @@ Class char(10) comment '班级' ,
 TelNo char(20) comment '电话' 
 )default charset=utf8;
 ```
-![读者信息表](images/SQLReader.jpg)
+![读者信息表](https://github.com/Minuy/BlueRabbitLibrarySystem/tree/master/images/SQLReader.jpg)
 
 5. 表关系
-![表关系](images/SQL.jpg)
+![表关系](https://github.com/Minuy/BlueRabbitLibrarySystem/tree/master/images/SQL.jpg)
 
 ##五、项目结构
 项目分有数据层、视图层、监听层、服务层
-![项目](images/jiegou.jpg)
+![项目](https://github.com/Minuy/BlueRabbitLibrarySystem/tree/master/images/jiegou.jpg)
 
 项目分包
-![项目包](images/ssss.jpg)
+![项目包](https://github.com/Minuy/BlueRabbitLibrarySystem/tree/master/images/ssss.jpg)
 
 视图层主要是JavaSwing类，给用户提供交互界面；
 
