@@ -1,12 +1,12 @@
-#蓝兔图书管理系统（Java+MySQL+Swing）
-##零、前言
+# 蓝兔图书管理系统（Java+MySQL+Swing）
+## 零、前言
 - 本项目是2019年6月湖南人文科技学院和湖南虹猫信息科技有限公司的校企合作项目中我们小组（5人）的实训作品。我是通信工程专业的，2019年上期我刚上完学校的Java选修课程和SQLServer2008的选项课程，只对Java一知半解，参加这次实训本来是想选择另外一家公司的用Cocos2D做“天天酷跑”的项目的，说好跟她组队一起做天天酷跑的，然而她因为各种原因被学校分到这个公司的实训项目中。没办法，想跟她组队，然后就毅然跟学校领导协调，所幸最终可以跟她一起组队，并且收获也很大。这是我第一个Java比较完整项目（上课的那种小例子可以不算项目），学会了怎么用JDBC，学会了Java的一般程序模型（DAO层、JavaBean、监听层、服务层、视图层等），了解了一个软件的开发和维护。总之实训结束的时候我觉得我可以一个人独立开发软件了，这让我感觉收获非常大，这奠定了后来我独立开发软件的基础，但是在写程序的时候也出现了很多问题，比如监听层处理业务比较小的时候能不能放到视图层里（后面写安卓的时候经常这样，但是老师要求我们分开，不是很理解），服务层要操作视图层时是直接把视图传过去还是只传控件，以后要移植的话服务层怎么保证不用改很多地方等问题，以至于我自己独立写程序时很多地方不确定这样写是不是比较科学的。后来发现解决这一些问题的有专门的模式设计的课程，但还没有深入了解。感谢老师和同学们对我的帮助，实训过去5个月，现分享出来供大家学习交流。
 
 - 下面简单介绍项目软件，文章末尾有相关资源链接。
 
 - 项目中所有内容仅用于学习用途。
 
-##一、功能
+## 一、功能
 1. 管理员登录、改密码、资料等
 2. 有超级权限的账号能管理其他管理员
 3. 图书信息的增删改查
@@ -14,7 +14,7 @@
 5. 借阅管理（暂停）
 6. 退出登录
 
-##二、相关技术及开发环境
+## 二、相关技术及开发环境
 1. Eclipse 2019（4.12.0）
 2. JDK8
 3. mysql-connector-java-5.1.47
@@ -22,7 +22,7 @@
 5. Java Swing
 6. MySQL5.7
 
-##三、软件或项目截图及说明
+## 三、软件或项目截图及说明
 ![登录界面](https://github.com/Minuy/BlueRabbitLibrarySystem/tree/master/images/loginScan.jpg)
 <center>登录界面</center>
 
@@ -58,7 +58,7 @@
 
 ![借阅管理](https://github.com/Minuy/BlueRabbitLibrarySystem/tree/master/images/BookOther.jpg)
 <center>借阅管理（实训结束后没有继续完善）</center>
-##四、数据库设计
+## 四、数据库设计
 1. 创建数据库
 ```SQL
 CREATE DATABASE library_system;
@@ -137,7 +137,7 @@ TelNo char(20) comment '电话'
 
 数据层主要负责数据的查询修改等，提供给服务层使用；
 
-##六、主要代码分析和使用
+## 六、主要代码分析和使用
 - 找到
 
 ```java
@@ -584,7 +584,7 @@ public class LoginView_loginButton_ActionListener implements ActionListener {
 }
 
 ```
-##七、项目资源及参考文档
+## 七、项目资源及参考文档
 GitHub地址：[https://github.com/Minuy/BlueRabbitLibrarySystem](https://github.com/Minuy/BlueRabbitLibrarySystem)
 
 参考文档：[JavaSwing皮肤](https://blog.csdn.net/starcrm/article/details/52576379)
