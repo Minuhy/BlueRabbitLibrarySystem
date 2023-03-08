@@ -25,6 +25,7 @@ public class BlueRabbitLibrarySystem {
 			BeautyEyeLNFHelper.frameBorderStyle = FrameBorderStyle.translucencyAppleLike;
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);
+			BeautyEyeLNFHelper.translucencyAtFrameInactive = false; // 关闭半透明效果
 		}
 		catch(Exception e)
 		{

@@ -13,12 +13,13 @@ import com.bluerabbit.librarysystem.database.DBUtil;
  * 与书相关的更新类，更新书籍信息，可合并
  * @author minuy
  *
+ * 更新SQL语句
  */
 public class BookInfoUpdate {
 
 	public boolean UpdateBookInfo(BookInfoBeans book){
 		boolean rs = false;
-		String sql = "UPDATE `library_system`.`Books_Info` SET `BookName` = ?, `SumQuantity` = ?, `Quantity` = ?, `LendTime` = ?, `BookBarcode` = ?, `BookClassify` = ?, `BookThem` = ?, `Author` = ?, `Publisher` = ?, `PublishTime` = ?, `PublishDate` = ?, `BookType` = ?, `Stack` = ?, `BookShelf` = ?, `Price` = ?, `ContentText` = ?, `Remark` = ?, `BookPage` = ?, `WordsNumber` = ? WHERE (`BookID` = ?)";
+		String sql = "UPDATE `Books_Info` SET `BookName` = ?, `SumQuantity` = ?, `Quantity` = ?, `LendTime` = ?, `BookBarcode` = ?, `BookClassify` = ?, `BookThem` = ?, `Author` = ?, `Publisher` = ?, `PublishTime` = ?, `PublishDate` = ?, `BookType` = ?, `Stack` = ?, `BookShelf` = ?, `Price` = ?, `ContentText` = ?, `Remark` = ?, `BookPage` = ?, `WordsNumber` = ? WHERE (`BookID` = ?)";
 		//获得数据库连接
 		Connection conn = DBUtil.getConn();
 		//声明句柄对象
@@ -66,7 +67,7 @@ public class BookInfoUpdate {
 
 	public boolean AddBook(BookInfoBeans book){
 		boolean rs = false;
-		String sql = "INSERT INTO `library_system`.`Books_Info` (`BookName`, `SumQuantity`, `Quantity`, `LendTime`, `BookID`, `BookBarcode`, `BookClassify`, `BookThem`, `Author`, `Publisher`, `PublishTime`, `PublishDate`, `BookType`, `Stack`, `BookShelf`, `Price`, `ContentText`, `Remark`,`BookPage`,`WordsNumber`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO `Books_Info` (`BookName`, `SumQuantity`, `Quantity`, `LendTime`, `BookID`, `BookBarcode`, `BookClassify`, `BookThem`, `Author`, `Publisher`, `PublishTime`, `PublishDate`, `BookType`, `Stack`, `BookShelf`, `Price`, `ContentText`, `Remark`,`BookPage`,`WordsNumber`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		//获得数据库连接
 		Connection conn = DBUtil.getConn();
 		//声明句柄对象

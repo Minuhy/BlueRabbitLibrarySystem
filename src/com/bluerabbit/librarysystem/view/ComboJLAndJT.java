@@ -1,8 +1,7 @@
 package com.bluerabbit.librarysystem.view;
 
 
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.*;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,9 +17,18 @@ public class ComboJLAndJT extends JPanel {
 	private JLabel labInfo;
 	private JTextField gettxt;
 
+	public ComboJLAndJT(String text){
+		this(text,false);
+	}
 
-	//private boolean mode;
+	public ComboJLAndJT(String text,int col){
+		this(text,col,false);
+	}
 	public ComboJLAndJT(String text,boolean mode){
+		this(text,50,mode);
+	}
+	//private boolean mode;
+	public ComboJLAndJT(String text,int col,boolean mode){
 		//int JpW = this.getWidth();
 		//int JpH = this.getHeight();
 		//this.mode = mode;
@@ -31,7 +39,7 @@ public class ComboJLAndJT extends JPanel {
 		//gettxt.setBounds(JpW/2, 0, JpW/2, JpH);
 
 		this.add(txt);
-		gettxt = new JTextField(50);
+		gettxt = new JTextField(col);
 		labInfo = new JLabel();
 		labInfo.setPreferredSize(new Dimension(50,20));
 		if(mode){
@@ -41,8 +49,7 @@ public class ComboJLAndJT extends JPanel {
 			gettxt.setEditable(false);
 		}
 	}
-	
-	
+
 	public ComboJLAndJT(String text,boolean mode,int w){
 		//int JpW = this.getWidth();
 		//int JpH = this.getHeight();

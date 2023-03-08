@@ -13,11 +13,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 /**
- * å¸®åŠ©ç•Œé¢
- * @author minuy
+ * °ïÖú½çÃæ
+ * @author minuhy
  *
  */
-public class helpView extends JDialog {
+public class HelpView extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private boolean reflshTime = true;
 	private JPanel helpWin;
@@ -28,9 +28,9 @@ public class helpView extends JDialog {
 	private JScrollPane slpmain;
 	private JLabel labDate;
 	private JTextArea sql;
-	public helpView(loginView lv){
-		//è®¾ç½®çˆ¶çª—å£æ ‡é¢˜å¹¶ä¸”ç¦æ­¢æ“ä½œçˆ¶è§†å›¾
-		super(lv,"å¸®åŠ©",true);
+	public HelpView(loginView lv){
+		//ÉèÖÃ¸¸´°¿Ú±êÌâ²¢ÇÒ½ûÖ¹²Ù×÷¸¸ÊÓÍ¼
+		super(lv,"°ïÖú",true);
 		helpWin = new JPanel();
 		labExplain = new JLabel("admin\u521d\u59cb\u5bc6\u7801\u4e3a\u7a7a\u0021\u0020");
 		txfAbout = new JTextField();
@@ -44,13 +44,13 @@ public class helpView extends JDialog {
 	}
 
 	private void Init(){
-		//å¯ç”¨çª—å£å…³é—­
+		//ÆôÓÃ´°¿Ú¹Ø±Õ
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		//è®¾ç½®çª—å£å¤§å°
+		//ÉèÖÃ´°¿Ú´óĞ¡
 		this.setSize(400, 400);
-		//è®¾ç½®çª—å£å±…ä¸­
+		//ÉèÖÃ´°¿Ú¾ÓÖĞ
 		CenterView.CenterByWindow(this);
-		//è®¾ç½®å®¹å™¨å¸ƒå±€æ–¹å¼ä¸ºç©ºå¸ƒå±€
+		//ÉèÖÃÈİÆ÷²¼¾Ö·½Ê½Îª¿Õ²¼¾Ö
 		helpWin.setLayout(null);
 
 		labExplain.setBounds(0, 0, 310, 50);
@@ -96,11 +96,11 @@ public class helpView extends JDialog {
 			public void mouseClicked(MouseEvent e) {}
 		});
 		
-		//è®¾ç½®ä¸»è§†å›¾çš„å¤§å°
+		//ÉèÖÃÖ÷ÊÓÍ¼µÄ´óĞ¡
 		helpWin.setPreferredSize(new Dimension(300,1700));
 
 
-		//æ·»åŠ æ»‘åŠ¨æ¡
+		//Ìí¼Ó»¬¶¯Ìõ
 		slpmain.setViewportView(helpWin);
 		slpmain.setBounds(0, 0, 350, 400);
 		
@@ -121,17 +121,17 @@ public class helpView extends JDialog {
 	    long nh = 1000 * 60 * 60;
 	    long nm = 1000 * 60;
 	    long ns = 1000;
-	    // è·å¾—ä¸¤ä¸ªæ—¶é—´çš„æ¯«ç§’æ—¶é—´å·®å¼‚
+	    // »ñµÃÁ½¸öÊ±¼äµÄºÁÃëÊ±¼ä²îÒì
 	    long diff = endDate.getTime() - nowDate.getTime();
-	    // è®¡ç®—å·®å¤šå°‘å¤©
+	    // ¼ÆËã²î¶àÉÙÌì
 	    long day = diff / nd;
-	    // è®¡ç®—å·®å¤šå°‘å°æ—¶
+	    // ¼ÆËã²î¶àÉÙĞ¡Ê±
 	    long hour = diff % nd / nh;
-	    // è®¡ç®—å·®å¤šå°‘åˆ†é’Ÿ
+	    // ¼ÆËã²î¶àÉÙ·ÖÖÓ
 	    long min = diff % nd % nh / nm;
-	    // è®¡ç®—å·®å¤šå°‘ç§’//è¾“å‡ºç»“æœ
+	    // ¼ÆËã²î¶àÉÙÃë//Êä³ö½á¹û
 	    long sec = diff % nd % nh % nm / ns;
-	    return day + "å¤©" + hour + "å°æ—¶" + min + "åˆ†é’Ÿ" + sec +"ç§’";
+	    return day + "Ìì" + hour + "Ğ¡Ê±" + min + "·ÖÖÓ" + sec +"Ãë";
 	}
 	
 	private void showTime(){
@@ -144,7 +144,7 @@ public class helpView extends JDialog {
 					sleep(1000);
 					Date now = new Date();
 					Date old = new Date(1559265465000L);
-					labDate.setText("2019-05-31 09.17.45ï¼šè·ä»Šå·²è¿‡"+ getDatePoor(now,old) );
+					labDate.setText("2019-05-31 09.17.45£º¾à½ñÒÑ¹ı"+ getDatePoor(now,old) );
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

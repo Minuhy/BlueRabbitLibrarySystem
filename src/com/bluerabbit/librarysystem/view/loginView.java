@@ -74,7 +74,7 @@ public class loginView extends JFrame{
 	//这里需要设置为私有的，以防止其他程序调用多次产生多个监听器而产生点一次按钮响应两次的结果
 	private void intiView(){
 		//设置标题，this表示LoginView这个界面，所以里的标题是界面的标题
-		this.setTitle("蓝兔图书管理系统 - 用户登录");
+		this.setTitle("蓝兔图书管理系统 - 管理员登录");
 		//设置窗口可关闭，退出的方式有多种，exit和dispose
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//设置窗口大小

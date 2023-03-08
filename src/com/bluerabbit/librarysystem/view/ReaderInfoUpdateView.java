@@ -25,7 +25,7 @@ import com.bluerabbit.librarysystem.listener.ReaderInfoUpdateView_ActionListener
 @SuppressWarnings("serial")
 public class ReaderInfoUpdateView extends JDialog {
 	private boolean mode;//t:add.f:fix
-	private JPanel mianView;
+	private JPanel mainView;
 	private JPanel contentView;
 	private JPanel functionView;
 	private int WindowsHeight;
@@ -78,7 +78,7 @@ public class ReaderInfoUpdateView extends JDialog {
 		windowsWidth = rv.getWidth();
 
 		//界面部分
-		mianView = new JPanel();
+		mainView = new JPanel();
 		functionView = new JPanel();
 		contentView = new JPanel();
 		pnlSex = new JPanel();
@@ -95,14 +95,14 @@ public class ReaderInfoUpdateView extends JDialog {
 			w = 20;
 		}
 
-		//馆藏信息
-		cltReaderID = new ComboJLAndJT("    学号：",editor,w);//所在书室
-		cltReaderName = new ComboJLAndJT("    姓名：",editor,w);//所在书架
-		cltApart = new ComboJLAndJT("    学院：",editor,w);//书刊类别
-		cltTheClass = new ComboJLAndJT("    班级：",editor,w);//书刊类别
-		cltTelNo = new ComboJLAndJT("联系方式：",editor,w);//书刊类别
+		//个人信息
+		cltReaderID = new ComboJLAndJT("学    号：",editor,w);
+		cltReaderName = new ComboJLAndJT("姓    名：",editor,w);
+		cltApart = new ComboJLAndJT("学    院：",editor,w);
+		cltTheClass = new ComboJLAndJT("班    级：",editor,w);
+		cltTelNo = new ComboJLAndJT("联系方式：",editor,w);
 		jcbSex = new JComboBox<String>();
-		LabSex = new JLabel("    性别：");
+		LabSex = new JLabel("性    别：");
 
 
 
@@ -163,7 +163,7 @@ public class ReaderInfoUpdateView extends JDialog {
 		//不允许用户调整窗口大小
 
 		//设置布局
-		mianView.setLayout(new BorderLayout());
+		mainView.setLayout(new BorderLayout());
 		contentView.setLayout(new GridLayout(3,2));
 		functionView.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
@@ -201,9 +201,9 @@ public class ReaderInfoUpdateView extends JDialog {
 		functionView.add(cancel);
 
 
-		mianView.add(functionView, BorderLayout.SOUTH);
-		mianView.add(contentView, BorderLayout.CENTER);
-		this.add(mianView);
+		mainView.add(functionView, BorderLayout.SOUTH);
+		mainView.add(contentView, BorderLayout.CENTER);
+		this.add(mainView);
 		this.setVisible(true);
 	}
 

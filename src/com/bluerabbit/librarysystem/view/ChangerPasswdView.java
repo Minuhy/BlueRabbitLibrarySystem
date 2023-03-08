@@ -44,7 +44,7 @@ public class ChangerPasswdView extends JDialog {
 	 * 
 	 * @param pv
 	 * @param admin
-	 * @param isOldPwd是否要输入原密码
+	 * @param isOldPwd 是否要输入原密码
 	 */
 	public ChangerPasswdView(JDialog pv, AdministratorBeans admin,boolean isOldPwd){
 		super(pv,true);

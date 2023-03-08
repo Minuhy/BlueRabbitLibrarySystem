@@ -130,11 +130,11 @@ public class AdminInfoManageView extends JDialog {
 		buttonView.add(labResetPwd,BorderLayout.CENTER);
 		buttonView.add(Bclo,BorderLayout.CENTER);
 		
-//		setJLabelImage(Badd,"res/BookInfo/Bookadd.png",buttonSize,buttonSize);
-//		setJLabelImage(Bfix,"res/BookInfo/Bookfix.png",buttonSize,buttonSize);
-//		setJLabelImage(Bdel,"res/BookInfo/Bookdel.png",buttonSize,buttonSize);
-//		setJLabelImage(labResetPwd,"res/BookInfo/Bookrst.png",buttonSize,buttonSize);
-//		setJLabelImage(Bclo,"res/BookInfo/Bookclo.png",buttonSize,buttonSize);
+//		setJLabelImage(Badd,"res/BookInfo/Bookadd.png",BUTTON_SIZE,BUTTON_SIZE);
+//		setJLabelImage(Bfix,"res/BookInfo/Bookfix.png",BUTTON_SIZE,BUTTON_SIZE);
+//		setJLabelImage(Bdel,"res/BookInfo/Bookdel.png",BUTTON_SIZE,BUTTON_SIZE);
+//		setJLabelImage(labResetPwd,"res/BookInfo/Bookrst.png",BUTTON_SIZE,BUTTON_SIZE);
+//		setJLabelImage(Bclo,"res/BookInfo/Bookclo.png",BUTTON_SIZE,BUTTON_SIZE);
 		
 		//工具栏的处理
 		//提示text

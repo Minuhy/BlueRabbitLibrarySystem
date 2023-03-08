@@ -35,7 +35,7 @@ public class MainView_Button2_MouseListener implements MouseListener {
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		//鼠标点着不放开
-		mv.setJLabelImageAndSize(460, 120, 250, 430, label, "res/MainView/2/press.png");
+		mv.setJLabelImageAndSize(460, 120, 250, 430, label, "res/main/2/press.png");
 		//"res/MainView/1/default.png"
 		//SetButtonUporDown.setButtonDown(label);
 	}
@@ -44,7 +44,7 @@ public class MainView_Button2_MouseListener implements MouseListener {
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		//鼠标点击放开了
-		mv.setJLabelImageAndSize(460, 120, 250, 430, label, "res/MainView/2/focus.png");
+		mv.setJLabelImageAndSize(460, 120, 250, 430, label, "res/main/2/focus.png");
 		///SetButtonUporDown.SetButtonUp(label);
 	}
 
@@ -53,14 +53,14 @@ public class MainView_Button2_MouseListener implements MouseListener {
 		// TODO Auto-generated method stub
 		//鼠标到上面了
 		//SetButtonUporDown.SetButtonUp(label);
-		mv.setJLabelImageAndSize(460, 120, 250, 430, label, "res/MainView/2/focus.png");
+		mv.setJLabelImageAndSize(460, 120, 250, 430, label, "res/main/2/focus.png");
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		//鼠标离开了
-		mv.setJLabelImageAndSize(460, 120, 250, 430, label, "res/MainView/2/default.png");
+		mv.setJLabelImageAndSize(460, 120, 250, 430, label, "res/main/2/default.png");
 		//SetButtonUporDown.reSetButton(label);
 	}
 

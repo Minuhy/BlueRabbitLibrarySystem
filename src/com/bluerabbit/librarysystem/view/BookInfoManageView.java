@@ -145,10 +145,10 @@ public class BookInfoManageView extends JDialog {
 		buttonView.add(Bdel);
 		buttonView.add(Bclo);
 		
-		setJLabelImage(Badd,"res/BookInfo/Bookadd.png",buttonSize,buttonSize);
-		setJLabelImage(Bfix,"res/BookInfo/Bookfix.png",buttonSize,buttonSize);
-		setJLabelImage(Bdel,"res/BookInfo/Bookdel.png",buttonSize,buttonSize);
-		setJLabelImage(Bclo,"res/BookInfo/Bookclo.png",buttonSize,buttonSize);
+		setJLabelImage(Badd,"res/book/Bookadd.png",buttonSize,buttonSize);
+		setJLabelImage(Bfix,"res/book/Bookfix.png",buttonSize,buttonSize);
+		setJLabelImage(Bdel,"res/book/Bookdel.png",buttonSize,buttonSize);
+		setJLabelImage(Bclo,"res/book/Bookclo.png",buttonSize,buttonSize);
 		
 		//工具栏的处理
 		//提示text

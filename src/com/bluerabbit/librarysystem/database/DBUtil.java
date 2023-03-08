@@ -21,9 +21,9 @@ public abstract class DBUtil {
 	//声明连接数据库所需要的相关信息
 	
 	private static String driver = "com.mysql.jdbc.Driver";
-	private static String url = "jdbc:mysql://localhost:3306/library_system?useUnicode=true&characterEncoding=UTF-8";
+	private static String url = "jdbc:mysql://localhost:3306/br_library_system?useUnicode=true&characterEncoding=UTF-8";
 	private static String userName = "root";
-	private static String passWord = "YourPassword";
+	private static String passWord = "root123456";
 	
 	//单例化模式
 	private DBUtil() {

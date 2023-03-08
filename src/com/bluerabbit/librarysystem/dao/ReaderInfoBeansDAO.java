@@ -16,6 +16,7 @@ import com.bluerabbit.librarysystem.database.DBUtil;
  * 读者信息相关的数据库操作
  * @author minuy
  *
+ * 更新SQL语句
  */
 public class ReaderInfoBeansDAO {
 
@@ -67,7 +68,7 @@ public class ReaderInfoBeansDAO {
 	public boolean SaveAReaderInfo(ReaderInfoBeans readerInfo){
 		boolean rs = false;
 
-		String sql = "INSERT INTO `library_system`.`Reader` (`ReaderID`, `ReaderName`, `Apart`, `Sex`, `Class`, `TelNo`) VALUES(?,?,?,?,?,?)";
+		String sql = "INSERT INTO `Reader` (`ReaderID`, `ReaderName`, `Apart`, `Sex`, `Class`, `TelNo`) VALUES(?,?,?,?,?,?)";
 		//获得数据库连接
 		Connection conn = DBUtil.getConn();
 		//声明句柄对象
@@ -109,7 +110,7 @@ public class ReaderInfoBeansDAO {
 	public boolean UpReaderInfo(ReaderInfoBeans readerInfo,String oldId){
 		boolean rs = false;
 
-		String sql = "UPDATE `library_system`.`Reader` SET `ReaderID` = ?, `ReaderName` = ?, `Apart` = ?, `Sex` = ?, `Class` = ?, `TelNo` = ? WHERE (`ReaderID` = ?)";
+		String sql = "UPDATE `Reader` SET `ReaderID` = ?, `ReaderName` = ?, `Apart` = ?, `Sex` = ?, `Class` = ?, `TelNo` = ? WHERE (`ReaderID` = ?)";
 		//获得数据库连接
 		Connection conn = DBUtil.getConn();
 		//声明句柄对象
@@ -196,7 +197,7 @@ public class ReaderInfoBeansDAO {
 		//声明句柄对象
 		PreparedStatement pstm = null;
 		System.out.println(id);
-		String sql = "DELETE FROM `library_system`.`Reader` WHERE (`ReaderID` = ?)";
+		String sql = "DELETE FROM `Reader` WHERE (`ReaderID` = ?)";
 		try {
 			//获得操作句柄
 			pstm = conn.prepareStatement(sql);

@@ -30,27 +30,27 @@ public class BookInfoManageView_exeInquire_MouseListener implements
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		//按下去了
-		//bookInfoManageView.setJLabelImage(bookInfoManageView.getExeInquire(),"res/BookInfo/sousuo2.png",197,27);
+		//bookInfoManageView.setJLabelImage(bookInfoManageView.getExeInquire(),"res/book/sousuo2.png",197,27);
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		//放开了
-		//bookInfoManageView.setJLabelImage(bookInfoManageView.getExeInquire(),"res/BookInfo/sousuo3.png",197,27);
+		//bookInfoManageView.setJLabelImage(bookInfoManageView.getExeInquire(),"res/book/sousuo3.png",197,27);
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
 		//移入
-		//bookInfoManageView.setJLabelImage(bookInfoManageView.getExeInquire(),"res/BookInfo/sousuo3.png",197,27);
+		//bookInfoManageView.setJLabelImage(bookInfoManageView.getExeInquire(),"res/book/sousuo3.png",197,27);
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		//移出
-		//bookInfoManageView.setJLabelImage(bookInfoManageView.getExeInquire(),"res/BookInfo/sousuo1.png",197,27);
+		//bookInfoManageView.setJLabelImage(bookInfoManageView.getExeInquire(),"res/book/sousuo1.png",197,27);
 	}
 }

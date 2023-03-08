@@ -16,7 +16,8 @@ import com.bluerabbit.librarysystem.database.DBUtil;
 /**
  * 管理员数据库交互类，与管理员相关的数据库操作
  * @author minuy
- *
+ * 
+ * 更新SQL语句
  */
 public class AdministratorBeansDAO {
 	AdministratorBeans user;
@@ -245,7 +246,7 @@ public class AdministratorBeansDAO {
 		PreparedStatement pstm = null;
 
 		//sql语句	
-		String sql = "UPDATE `library_system`.`Administrator` SET `AdminID` = ?, `AdminName` = ?, `Password` = ?, `ifsuper` = ? WHERE (`Account` = ?)";
+		String sql = "UPDATE `Administrator` SET `AdminID` = ?, `AdminName` = ?, `Password` = ?, `ifsuper` = ? WHERE (`Account` = ?)";
 		try {
 			//获得句柄
 			pstm = conn.prepareStatement(sql);
