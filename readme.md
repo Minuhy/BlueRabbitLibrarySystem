@@ -585,6 +585,8 @@ public class LoginView_loginButton_ActionListener implements ActionListener {
 
 ```
 ## 七、项目资源及参考文档
-GitHub地址：[https://github.com/Minuy/BlueRabbitLibrarySystem](https://github.com/Minuy/BlueRabbitLibrarySystem)
+- GitHub地址：[https://github.com/minuhy/BlueRabbitLibrarySystem](https://github.com/minuhy/BlueRabbitLibrarySystem)
 
-参考文档：[JavaSwing皮肤](https://blog.csdn.net/starcrm/article/details/52576379)
+- 参考文档：[JavaSwing皮肤](https://blog.csdn.net/starcrm/article/details/52576379)
+
+- 博客：[https://blog.csdn.net/XiaoYuHaoAiMin/article/details/103502692](https://blog.csdn.net/XiaoYuHaoAiMin/article/details/103502692)
