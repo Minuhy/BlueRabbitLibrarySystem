@@ -43,6 +43,10 @@ public class BorrowInfoView extends JDialog {
     private final ComboJLAndJT cltBookBarcode;//书刊条码
     private final ComboJLAndJT cltBookStack;//书室
     private final ComboJLAndJT cltBookShelf;//书架
+    private final ComboJLAndJT cltBookTotalNumber;//总册数
+    private final ComboJLAndJT cltBookNumber;//剩余册数
+    private final ComboJLAndJT cltBookPrice;//价格
+    private final ComboJLAndJT cltBookLendTime;//借出次数
 
     //其他信息
     private final ComboJLAndJT cltReaderId; // 学    号
@@ -99,13 +103,17 @@ public class BorrowInfoView extends JDialog {
         cltBookBarcode = new ComboJLAndJT("书刊条码：");//书刊条码
         cltBookStack = new ComboJLAndJT("书    室：");//书    室
         cltBookShelf = new ComboJLAndJT("书    架：");//书    架
+        cltBookTotalNumber = new ComboJLAndJT("总 册 数：");//总册数
+        cltBookNumber = new ComboJLAndJT("剩余册数：");//剩余册数
+        cltBookPrice = new ComboJLAndJT("价    格：");//价格
+        cltBookLendTime = new ComboJLAndJT("借出次数：");//借出次数
 
         //个人信息 6
-        cltReaderId = new ComboJLAndJT("学    号：");//学号
-        cltReaderName = new ComboJLAndJT("姓    名：");//姓名
-        cltReaderApart = new ComboJLAndJT("学    院：");//学院
-        cltReaderClass = new ComboJLAndJT("班    级：");//班级
-        cltReaderTel = new ComboJLAndJT("联系方式：");//联系方式
+        cltReaderId = new ComboJLAndJT("学    号：", 30);//学号
+        cltReaderName = new ComboJLAndJT("姓    名：", 30);//姓名
+        cltReaderApart = new ComboJLAndJT("学    院：", 30);//学院
+        cltReaderClass = new ComboJLAndJT("班    级：", 30);//班级
+        cltReaderTel = new ComboJLAndJT("联系方式：", 30);//联系方式
         jcbSex = new JComboBox<>();
         jcbSex.setEnabled(false);
         jlbSex = new JLabel("性    别：");
@@ -134,15 +142,15 @@ public class BorrowInfoView extends JDialog {
         BorrowDao dao = new BorrowDao();
         BorrowBeans beans = dao.getBorrowInfoByBorrowID(borrowDataId);
 
-        if(beans == null){
-            JOptionPane.showMessageDialog(this,"没有查到数据");
+        if (beans == null) {
+            JOptionPane.showMessageDialog(this, "没有查到数据");
             return;
         }
 
         // 如果有还回的管理员记录，则查
-        try{
-            if(beans.getReturnAdminId()!=null) {
-                if(!beans.getReturnAdminId().equals("")) {
+        try {
+            if (beans.getReturnAdminId() != null) {
+                if (!beans.getReturnAdminId().equals("")) {
                     if (Integer.parseInt(beans.getReturnAdminId()) != 0) {
                         BorrowBeans returnBeans = dao.getBorrowInfoInByBorrowID(borrowDataId);
                         if (returnBeans != null) {
@@ -150,13 +158,12 @@ public class BorrowInfoView extends JDialog {
                         }
                     }
                 }
-            }else{
+            } else {
                 beans.setReturnAdminId("未还入");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("查找归还管理员时出错：" + e.getMessage());
         }
-
 
 
         //设置借阅信息
@@ -181,6 +188,11 @@ public class BorrowInfoView extends JDialog {
         cltBookStack.setIText(beans.getBookStack());//书    室
         cltBookShelf.setIText(beans.getBookShelf());//书    架
 
+        cltBookTotalNumber.setIText(beans.getBookTotalNumber());//总册数
+        cltBookNumber.setIText(beans.getBookSurplusNumber());//剩余册数
+        cltBookPrice.setIText(beans.getBookPrice());//价格
+        cltBookLendTime.setIText(beans.getBookLendTime());//借出次数
+
         //个人信息
         cltReaderId.setIText(beans.getReaderId());//学号
         cltReaderName.setIText(beans.getReaderName());//姓名
@@ -196,7 +208,7 @@ public class BorrowInfoView extends JDialog {
 
     private void Init() {
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        this.setSize(windowsWidth - 100, windowsHeight - 60);
+        this.setSize(windowsWidth - 200, windowsHeight - 40);
         CenterView.CenterByWindow(this);
         //不允许用户调整窗口大小
         this.setResizable(false);
@@ -210,20 +222,19 @@ public class BorrowInfoView extends JDialog {
         contentView.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.GRAY));
 
         //内容部分,h:wh-219,w:ww-130
-        int unitH = (windowsHeight - 219 + 40) / 11;
-        int unitW = (windowsWidth - 154);
+        int unitH = (windowsHeight - 219 + 60) / 12;
+        int unitW = (windowsWidth - 154 - 100);
         // 8
         borrowInfo.setLayout(new GridLayout(4, 2));
         borrowInfo.setBounds(0, 0, unitW, unitH * 4);
         borrowInfo.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.GRAY));
-        // 8
-        bookInfo.setLayout(new GridLayout(4, 2));
-        bookInfo.setBounds(0, unitH * 4, unitW, unitH * 4);
-        bookInfo.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.GRAY));
         // 6
-        readerInfo.setLayout(new GridLayout(3, 2));
-        readerInfo.setBounds(0, unitH * 8, unitW, unitH * 3 - 5);
-
+        readerInfo.setLayout(new GridLayout(2, 3));
+        readerInfo.setBounds(0, unitH * 4, unitW, unitH * 2);
+        readerInfo.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.GRAY));
+        // 8
+        bookInfo.setLayout(new GridLayout(6, 2));
+        bookInfo.setBounds(0, unitH * 6 + 1, unitW, unitH * 6 - 4);
 
         //借阅信息 8
         borrowInfo.add(cltBorrowId);//借阅编号
@@ -244,6 +255,10 @@ public class BorrowInfoView extends JDialog {
         bookInfo.add(cltBookBarcode);//书刊条码
         bookInfo.add(cltBookStack);//书    室
         bookInfo.add(cltBookShelf);//书    架
+        bookInfo.add(cltBookTotalNumber);//总册数
+        bookInfo.add(cltBookNumber);//剩余册数
+        bookInfo.add(cltBookPrice);//价格
+        bookInfo.add(cltBookLendTime);//借出次数
 
         //个人信息 6
         readerInfo.add(cltReaderId);//学号
@@ -258,7 +273,7 @@ public class BorrowInfoView extends JDialog {
         jplSex.add(jcbSex);
         readerInfo.add(jplSex);//性别
         jcbSex.setModel(new DefaultComboBoxModel<>(select));
-        jcbSex.setPreferredSize(new Dimension(308, 27));
+        jcbSex.setPreferredSize(new Dimension(187, 27));
 
         //添加监听事件
         btnOk.addActionListener(e -> biv.dispose());

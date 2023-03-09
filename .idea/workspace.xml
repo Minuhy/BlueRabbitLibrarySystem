@@ -35,6 +35,12 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.bluerabbit.librarysystem.listener.borrow" />
+      <recent name="com.bluerabbit.librarysystem.service.borrow" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="BlueRabbitLibrarySystem" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.bluerabbit.librarysystem.BlueRabbitLibrarySystem" />
@@ -77,7 +83,7 @@
       <option name="presentableId" value="Default" />
       <updated>1678258258162</updated>
       <workItem from="1678258261101" duration="4342000" />
-      <workItem from="1678263081204" duration="43710000" />
+      <workItem from="1678263081204" duration="54134000" />
     </task>
     <servers />
   </component>

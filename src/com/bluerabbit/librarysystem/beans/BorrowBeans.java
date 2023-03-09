@@ -23,9 +23,95 @@ public class BorrowBeans {
     String status; // 状态：0正常，1破碎，2破损严重，3丢失
     String bookNumber; // 借出数量
 
+
     public BorrowBeans() {
         book = new BookInfoBeans();
         reader = new ReaderInfoBeans();
+    }
+
+
+    /**
+     * 总册数
+     * @return 总册数
+     */
+    public String getBookTotalNumber() {
+        return String.valueOf(book.getSumQuantity());
+    }
+
+    /**
+     * 总册数
+     * @param bookTotalNumber 总册数
+     */
+    public void setBookTotalNumber(String bookTotalNumber) {
+        try{
+            book.setSumQuantity(Integer.parseInt(bookTotalNumber));
+        }catch (Exception e){
+            System.out.println("设置总册数时出错：" + e.getMessage());
+            book.setSumQuantity(0);
+        }
+    }
+
+    /**
+     * 剩余册数
+     * @return 剩余册数
+     */
+    public String getBookSurplusNumber() {
+        return String.valueOf(book.getQuantity());
+    }
+
+    /**
+     * 剩余册数
+     * @param bookSurplusNumber 剩余册数
+     */
+    public void setBookSurplusNumber(String bookSurplusNumber) {
+        try{
+            book.setQuantity(Integer.parseInt(bookSurplusNumber));
+        }catch (Exception e){
+            System.out.println("设置剩余册数时出错：" + e.getMessage());
+            book.setQuantity(0);
+        }
+    }
+
+    /**
+     * 价格
+     * @return 价格
+     */
+    public String getBookPrice() {
+        return String.valueOf(book.getPrice());
+    }
+
+    /**
+     * 价格
+     * @param bookPrice 价格
+     */
+    public void setBookPrice(String bookPrice) {
+        try{
+            book.setPrice(Double.parseDouble(bookPrice));
+        }catch (Exception e){
+            System.out.println("设置价格时出错：" + e.getMessage());
+            book.setPrice(0);
+        }
+    }
+
+    /**
+     * 借出次数
+     * @return 借出次数
+     */
+    public String getBookLendTime() {
+        return String.valueOf(book.getLendTime());
+    }
+
+    /**
+     * 借出次数
+     * @param bookLendTime 借出次数
+     */
+    public void setBookLendTime(String bookLendTime) {
+        try{
+            book.setLendTime(Integer.parseInt(bookLendTime));
+        }catch (Exception e){
+            System.out.println("设置借出次数时出错：" + e.getMessage());
+            book.setLendTime(0);
+        }
     }
 
     /**

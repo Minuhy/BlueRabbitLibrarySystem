@@ -31,16 +31,18 @@ public class BorrowOutServer {
     String keywordBook;
 
 
-    public BorrowOutServer(BorrowOutView bov){
+    public BorrowOutServer(BorrowOutView bov) {
         this.bov = bov;
         this.dao = new BorrowDao();
+        keywordBook = null;
+        keywordReader = null;
     }
 
     /**
      * 借出
      */
     public void out() {
-        String readerId  = bov.getCltReaderId().getText(); // 读者ID
+        String readerId = bov.getCltReaderId().getText(); // 读者ID
         String bookId = bov.getCltBookId().getText(); // 书ID
 
         String surplusNumber = bov.getCltBookNumber().getText(); // 剩余册数
@@ -48,48 +50,54 @@ public class BorrowOutServer {
         String duration = bov.getCltBorrowDuration().getText(); // 借出时长
         String number = bov.getCltBorrowNumber().getText(); // 借出册数
 
-        try{
+        try {
             int i = Integer.parseInt(duration);
-            if(i<1){
-                JOptionPane.showMessageDialog(bov,"借出时长至少一天");
+            if (i < 1) {
+                JOptionPane.showMessageDialog(bov, "借出时长至少一天");
+                return;
+            } else if (i > 180) {
+                JOptionPane.showMessageDialog(bov, "借出时长至多180天");
                 return;
             }
-            duration = (i*24*60*60*1000)+"";
-        }catch ( NumberFormatException e){
-            JOptionPane.showMessageDialog(bov,"借出时长格式错误，请只输入数字");
+            long d = i;
+            d = d * 24* 60 * 60 * 1000;
+            duration = String.valueOf(d);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(bov, "借出时长格式错误，请只输入数字");
             return;
         }
 
-        try{
+        try {
             int i = Integer.parseInt(number);
-            if(i<1){
-                JOptionPane.showMessageDialog(bov,"借出至少一册");
+            if (i < 1) {
+                JOptionPane.showMessageDialog(bov, "借出至少一册");
                 return;
             }
-            try{
+            try {
                 int si = Integer.parseInt(surplusNumber);
-                if(i>si){
-                    JOptionPane.showMessageDialog(bov,"剩余册数不足");
+                if (i > si) {
+                    JOptionPane.showMessageDialog(bov, "剩余册数不足");
                     return;
                 }
-            }catch (NumberFormatException e){
-                JOptionPane.showMessageDialog(bov,"系统数据格式错误");
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(bov, "系统数据格式错误");
                 return;
             }
-        }catch ( NumberFormatException e){
-            JOptionPane.showMessageDialog(bov,"借出册数格式错误，请只输入数字");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(bov, "借出册数格式错误，请只输入数字");
             return;
         }
 
         String adminID = String.valueOf(MainView.getAdmin().getAdminID()); // 借出管理员
         String time = String.valueOf(System.currentTimeMillis());
 
-        String result = dao.borrowOut(readerId,bookId,duration,number,adminID,time);
-        if(result == null){
-            JOptionPane.showMessageDialog(bov,"借出成功");
+        String result = dao.borrowOut(readerId, bookId, duration, number, adminID, time);
+
+        if (result == null) {
+            JOptionPane.showMessageDialog(bov, "借出成功");
             bov.resetData();
-        }else{
-            JOptionPane.showMessageDialog(bov,"借出时出错："+result);
+        } else {
+            JOptionPane.showMessageDialog(bov, "借出时出错：" + result);
         }
     }
 
@@ -97,46 +105,61 @@ public class BorrowOutServer {
      * 上一本书
      */
     public void prevBook() {
-
-        if(currentBookPage>1){
-            currentBookPage-=1;
-        }
-        BookInfoBeans beans = dao.getBookBySearch(keywordBook,currentBookPage);
-        if(beans == null){
-            JOptionPane.showMessageDialog(bov,"无结果");
+        if (keywordBook == null || keywordBook.equals("")) {
+            JOptionPane.showMessageDialog(bov, "请输入书籍关键词搜索");
             return;
         }
-        bov.setBookInfo(currentBookPage,totalBookPage,beans);
+
+        if (currentBookPage > 1) {
+            currentBookPage -= 1;
+        }
+        BookInfoBeans beans = dao.getBookBySearch(keywordBook, currentBookPage);
+        if (beans == null) {
+            JOptionPane.showMessageDialog(bov, "无结果");
+            return;
+        }
+        bov.setBookInfo(currentBookPage, totalBookPage, beans);
     }
 
     /**
      * 下一本书
      */
     public void nextBook() {
-        if(currentBookPage<totalBookPage){
-            currentBookPage+=1;
-        }
-        BookInfoBeans beans = dao.getBookBySearch(keywordBook,currentBookPage);
-        if(beans == null){
-            JOptionPane.showMessageDialog(bov,"无结果");
+        if (keywordBook == null || keywordBook.equals("")) {
+            JOptionPane.showMessageDialog(bov, "请输入书籍关键词搜索");
             return;
         }
-        bov.setBookInfo(currentBookPage,totalBookPage,beans);
+
+        if (currentBookPage < totalBookPage) {
+            currentBookPage += 1;
+        }
+        BookInfoBeans beans = dao.getBookBySearch(keywordBook, currentBookPage);
+        if (beans == null) {
+            JOptionPane.showMessageDialog(bov, "无结果");
+            return;
+        }
+        bov.setBookInfo(currentBookPage, totalBookPage, beans);
     }
 
     /**
      * 下一个读者
      */
     public void nextReader() {
-        if(currentReaderPage<totalReaderPage){
-            currentReaderPage+=1;
-        }
-        ReaderInfoBeans beans = dao.getReaderBySearch(keywordReader,currentReaderPage);
-        if(beans == null){
-            JOptionPane.showMessageDialog(bov,"无结果");
+
+        if (keywordReader == null || keywordReader.equals("")) {
+            JOptionPane.showMessageDialog(bov, "请输入读者关键词搜索");
             return;
         }
-        bov.setReaderInfo(currentReaderPage,totalReaderPage,beans);
+
+        if (currentReaderPage < totalReaderPage) {
+            currentReaderPage += 1;
+        }
+        ReaderInfoBeans beans = dao.getReaderBySearch(keywordReader, currentReaderPage);
+        if (beans == null) {
+            JOptionPane.showMessageDialog(bov, "无结果");
+            return;
+        }
+        bov.setReaderInfo(currentReaderPage, totalReaderPage, beans);
     }
 
     /**
@@ -144,15 +167,20 @@ public class BorrowOutServer {
      */
     public void prevReader() {
 
-        if(currentReaderPage>1){
-            currentReaderPage-=1;
-        }
-        ReaderInfoBeans beans = dao.getReaderBySearch(keywordReader,currentReaderPage);
-        if(beans == null){
-            JOptionPane.showMessageDialog(bov,"无结果");
+        if (keywordReader == null || keywordReader.equals("")) {
+            JOptionPane.showMessageDialog(bov, "请输入读者关键词搜索");
             return;
         }
-        bov.setReaderInfo(currentReaderPage,totalReaderPage,beans);
+
+        if (currentReaderPage > 1) {
+            currentReaderPage -= 1;
+        }
+        ReaderInfoBeans beans = dao.getReaderBySearch(keywordReader, currentReaderPage);
+        if (beans == null) {
+            JOptionPane.showMessageDialog(bov, "无结果");
+            return;
+        }
+        bov.setReaderInfo(currentReaderPage, totalReaderPage, beans);
     }
 
     /**
@@ -161,25 +189,26 @@ public class BorrowOutServer {
     public void searchBook() {
         // 拿到关键词
         keywordBook = bov.getJtfBookKeyword().getText();
-        keywordBook = '%' + keywordBook + '%';
 
-        if(keywordBook==null||keywordBook.equals("")){
-            JOptionPane.showMessageDialog(bov,"请输入书籍关键词");
+        if (keywordBook == null || keywordBook.equals("")) {
+            JOptionPane.showMessageDialog(bov, "请输入书籍关键词搜索");
             return;
         }
+
+        keywordBook = '%' + keywordBook + '%';
 
         totalBookCount = dao.getBookCountBySearch(keywordBook);
         totalBookPage = totalBookCount;
         currentBookPage = 1;
 
-        BookInfoBeans beans = dao.getBookBySearch(keywordBook,currentBookPage);
+        BookInfoBeans beans = dao.getBookBySearch(keywordBook, currentBookPage);
 
-        if(beans == null){
-            JOptionPane.showMessageDialog(bov,"无结果");
+        if (beans == null) {
+            JOptionPane.showMessageDialog(bov, "无结果");
             return;
         }
 
-        bov.setBookInfo(currentBookPage,totalBookPage,beans);
+        bov.setBookInfo(currentBookPage, totalBookPage, beans);
     }
 
     /**
@@ -188,24 +217,25 @@ public class BorrowOutServer {
     public void searchReader() {
         // 拿到关键词
         keywordReader = bov.getJtfReaderKeyword().getText();
-        keywordReader = '%' + keywordReader + '%';
 
-        if(keywordReader==null||keywordReader.equals("")){
-            JOptionPane.showMessageDialog(bov,"请输入读者关键词");
+        if (keywordReader == null || keywordReader.equals("")) {
+            JOptionPane.showMessageDialog(bov, "请输入读者关键词搜索");
             return;
         }
+
+        keywordReader = '%' + keywordReader + '%';
 
         totalReaderCount = dao.getReaderCountBySearch(keywordReader);
         totalReaderPage = totalReaderCount;
         currentReaderPage = 1;
 
-        ReaderInfoBeans beans = dao.getReaderBySearch(keywordReader,currentReaderPage);
+        ReaderInfoBeans beans = dao.getReaderBySearch(keywordReader, currentReaderPage);
 
-        if(beans == null){
-            JOptionPane.showMessageDialog(bov,"无结果");
+        if (beans == null) {
+            JOptionPane.showMessageDialog(bov, "无结果");
             return;
         }
 
-        bov.setReaderInfo(currentReaderPage,totalReaderPage,beans);
+        bov.setReaderInfo(currentReaderPage, totalReaderPage, beans);
     }
 }

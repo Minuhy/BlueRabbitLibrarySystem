@@ -2,6 +2,7 @@ package com.bluerabbit.librarysystem.listener.borrow;
 
 import com.bluerabbit.librarysystem.view.SetButtonUporDown;
 import com.bluerabbit.librarysystem.view.borrow.BorrowBookView;
+import com.bluerabbit.librarysystem.view.borrow.BorrowInView;
 import com.bluerabbit.librarysystem.view.borrow.BorrowInfoView;
 import com.bluerabbit.librarysystem.view.borrow.BorrowOutView;
 
@@ -41,7 +42,8 @@ public class BorrowMouseListener implements java.awt.event.MouseListener {
             // TODO
         }else if(clicked == bv.getBtnReturn()){
             System.out.println("¹é»¹");
-            // TODO
+            new BorrowInView(bv);
+            bv.updateTableData(1);
         }else if(clicked == bv.getBtnNexPage()){
             System.out.println("ÏÂÒ»Ò³");
             if(bv.getServer().getCurrentPage() < bv.getServer().getTotalPage()){

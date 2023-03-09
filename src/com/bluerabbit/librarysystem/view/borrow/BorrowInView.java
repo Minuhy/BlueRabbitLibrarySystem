@@ -2,21 +2,24 @@ package com.bluerabbit.librarysystem.view.borrow;
 
 import com.bluerabbit.librarysystem.beans.BookInfoBeans;
 import com.bluerabbit.librarysystem.beans.ReaderInfoBeans;
-import com.bluerabbit.librarysystem.listener.borrow.BorrowOutMouseListener;
-import com.bluerabbit.librarysystem.service.borrow.BorrowOutServer;
+import com.bluerabbit.librarysystem.listener.borrow.BorrowInMouseListener;
+import com.bluerabbit.librarysystem.service.borrow.BorrowInServer;
 import com.bluerabbit.librarysystem.view.CenterView;
 import com.bluerabbit.librarysystem.view.ComboJLAndJT;
+import com.bluerabbit.librarysystem.view.MyTable;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 
 /**
- * 借出处理框
- *
  * @author minuhy
- * @date 2023/3/8 22:32
+ * @date 2023/3/9 21:06
  */
-public class BorrowOutView extends JDialog {
+public class BorrowInView extends JDialog {
     private final JPanel mainView;
     private final JPanel contentView;
     private final JPanel functionView;
@@ -50,6 +53,9 @@ public class BorrowOutView extends JDialog {
     JButton btnNextBook; // 下一个结果
     JButton btnPrevBook; // 上一个结果
 
+    private MyTable tableDataView;
+    private DefaultTableModel dtmView;
+
     //读者信息
     private final ComboJLAndJT cltReaderId; // 学    号
     private final ComboJLAndJT cltReaderName; // 姓    名
@@ -60,31 +66,19 @@ public class BorrowOutView extends JDialog {
     private final JComboBox<String> jcbSex;
     private final JLabel jlbSex;//性别
 
-    private final JButton btnBorrow;
+    private final JButton btnBack;
     private final JButton btnCancel;
 
-    public BorrowOutView bov;
+    public BorrowInView biv;
 
     private final String[] select = {"", "男", "女"};//性别框
 
-    //书籍信息
-    private final ComboJLAndJT cltBookName;//书名
-    private final ComboJLAndJT cltBookAuthor;//作者
-    private final ComboJLAndJT cltBookPublisher;//出版社
-    private final ComboJLAndJT cltBookPublishDate;//出版日期
-    private final ComboJLAndJT cltBookId;//书刊编号
-    private final ComboJLAndJT cltBookBarcode;//书刊条码
-    private final ComboJLAndJT cltBookStack;//书室
-    private final ComboJLAndJT cltBookShelf;//书架
-    private final ComboJLAndJT cltBookPrice;//价格
-    private final ComboJLAndJT cltBookNumber;//剩余册数
 
+    BorrowInServer server;
 
-    BorrowOutServer server;
-
-    public BorrowOutView(BorrowBookView bv) {
-        super(bv, "图书借阅", true);
-        bov = this;
+    public BorrowInView(BorrowBookView bv) {
+        super(bv, "图书归还", true);
+        biv = this;
         //获得父视图的大小
         windowsHeight = bv.getHeight();
         windowsWidth = bv.getWidth();
@@ -104,17 +98,19 @@ public class BorrowOutView extends JDialog {
 
         //读者信息搜索
         jtfReaderKeyword = new JTextField(); // 搜索输入框
-        jlbReader = new JLabel("搜索读者"); // 搜索输入框
+        jlbReader = new JLabel("读者信息"); // 搜索输入框
         btnSearchReader = new JButton("搜索"); // 搜索按钮
         btnNextReader = new JButton("下一个"); // 下一个结果
         btnPrevReader = new JButton("上一个"); // 上一个结果
 
         //书籍信息搜索
         jtfBookKeyword = new JTextField(); // 搜索输入框
-        jlbBook = new JLabel("搜索书籍"); // 搜索输入框
+        jlbBook = new JLabel("已借阅书籍"); // 搜索输入框
         btnSearchBook = new JButton("搜索"); // 搜索按钮
         btnNextBook = new JButton("下一个"); // 下一个结果
         btnPrevBook = new JButton("上一个"); // 上一个结果
+
+        tableDataView = new MyTable();
 
         //借出设置
         cltBorrowDuration = new ComboJLAndJT("借出时长（天）", 30, true);//学号
@@ -132,24 +128,8 @@ public class BorrowOutView extends JDialog {
         jlbSex = new JLabel("性    别：");
 
 
-        //书籍信息 6
-        cltBookName = new ComboJLAndJT("书    名：");//书名
-        cltBookAuthor = new ComboJLAndJT("作    者：");//作者
-        cltBookPublisher = new ComboJLAndJT("出 版 社：");//出版社
-        cltBookPublishDate = new ComboJLAndJT("出版日期：");//出版日期
-
-        cltBookId = new ComboJLAndJT("书刊编号：");//书刊编号
-        cltBookBarcode = new ComboJLAndJT("书刊条码：");//书刊条码
-        cltBookStack = new ComboJLAndJT("书    室：");//书    室
-        cltBookShelf = new ComboJLAndJT("书    架：");//书    架
-        cltBookPrice = new ComboJLAndJT("价    格：");//价    格
-        cltBookNumber = new ComboJLAndJT("剩余册数：");//剩余册数
-
-
-        btnBorrow = new JButton("借出");
+        btnBack = new JButton("借出");
         btnCancel = new JButton("取消");
-
-        server = new BorrowOutServer(this);
 
         Init();
         resetData();
@@ -158,24 +138,57 @@ public class BorrowOutView extends JDialog {
     /**
      * 更新书籍信息
      *
-     * @param cp    当前页数
-     * @param p     总页数
-     * @param beans 书籍信息
+     * @param cp   未还书籍
+     * @param p    总借次数
+     * @param list 书籍信息
      */
-    public void setBookInfo(int cp, int p, BookInfoBeans beans) {
-        //书籍信息 10
-        cltBookName.setIText(beans.getBookName());//书名
-        cltBookAuthor.setIText(beans.getAuthor());//作者
-        cltBookPublisher.setIText(beans.getPublisher());//出版社
-        cltBookPublishDate.setIText(beans.getPublishDate());//出版日期
-        cltBookId.setIText(beans.getBookID());//书刊编号
-        cltBookBarcode.setIText(beans.getBookBarcode());//书刊条码
-        cltBookStack.setIText(beans.getStack());//书    室
-        cltBookShelf.setIText(beans.getBookShelf());//书    架
-        cltBookPrice.setIText(beans.getPrice() + ""); // 价格
-        cltBookNumber.setIText(beans.getQuantity() + ""); // 剩余册数
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public void setBookInfo(int cp, int p, List<BookInfoBeans> list) {
+// TODO Auto-generated method stub
+        //1.设置表格中的标题数据集合
+        Vector<String> title = new Vector<>();
+        title.add("书名");
+        title.add("作者");
+        title.add("书刊类别");
+        title.add("出版社");
+        title.add("出版版次");
+        title.add("剩余册数");
+        title.add("所在书室");
+        title.add("所在书架");
+        title.add("图书编号");
 
-        jlbBook.setText("书籍搜索结果（" + cp + "/" + p + "）");
+        //2.设置表格中的数据集合
+        Vector<Vector> data = new Vector<Vector>();
+        Vector row = null;
+
+
+        for (BookInfoBeans b : list) {
+            row = new Vector<>();
+            row.add(b.getBookName());//书名
+            row.add(b.getAuthor());//作者
+            row.add(b.getBookClassify());//分类
+            row.add(b.getPublisher());//出版社
+            row.add(b.getPublishTime());//出版版次
+            row.add(b.getQuantity());//剩余册数
+            row.add(b.getStack());//所在书室
+            row.add(b.getBookShelf());//所在书架
+            row.add(b.getBookID());//图书编号
+            data.add(row);
+        }
+
+        //设置tableModel
+        this.dtmView = new DefaultTableModel(data, title);
+        //将tableModel绑定在table上
+        this.tableDataView.setModel(dtmView);
+
+        //设置表格自适应数据
+        tableDataView.FitTableColumns();
+
+        if(p == 0){
+            jlbBook.setText("暂未借阅书籍");
+        }else {
+            jlbBook.setText("未归还书籍（" + cp + "/" + p + "）");
+        }
     }
 
     /**
@@ -208,19 +221,11 @@ public class BorrowOutView extends JDialog {
      */
     public void resetData() {
         // 借阅设置
-
-        //书籍信息 6
-        cltBookName.setIText("");//书名
-        cltBookAuthor.setIText("");//作者
-        cltBookPublisher.setIText("");//出版社
-        cltBookPublishDate.setIText("");//出版日期
-        cltBookId.setIText("");//书刊编号
-        cltBookBarcode.setIText("");//书刊条码
-        cltBookStack.setIText("");//书    室
-        cltBookShelf.setIText("");//书    架
-        cltBookNumber.setIText(""); // 剩余册数
-        cltBookPrice.setIText(""); // 价格
-        jlbBook.setText("搜索书籍");
+        jlbBook.setText("已借阅书籍");
+        List<BookInfoBeans> beans = new ArrayList<>();
+        BookInfoBeans infoBeans = new BookInfoBeans();
+        beans.add(infoBeans);
+        setBookInfo(0,0,beans);
 
         //个人信息 6
         cltReaderId.setIText("");//学号
@@ -231,7 +236,7 @@ public class BorrowOutView extends JDialog {
 
         jcbSex.setSelectedIndex(0);
 
-        jlbReader.setText("搜索读者");
+        jlbReader.setText("读者信息");
     }
 
     private void Init() {
@@ -261,7 +266,6 @@ public class BorrowOutView extends JDialog {
         // -------------------------------------------------------------------------------------/
         jplReaderInfo.setLayout(new GridLayout(2, 3));
         jplReaderInfo.setBounds(10, 60, unitW - 20, unitH * 2);
-        //jplReaderInfo.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.RED));
 
         //个人信息 6
         jplReaderInfo.add(cltReaderId);//学号
@@ -289,17 +293,7 @@ public class BorrowOutView extends JDialog {
         bookInfo.setBounds(10, unitH * 2 + 60 + 10 + 50 + 10, unitW - 20, unitH * 5);
         //bookInfo.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.GRAY));
 
-        //书籍信息 6
-        bookInfo.add(cltBookName);//书名
-        bookInfo.add(cltBookAuthor);//作者
-        bookInfo.add(cltBookPublisher);//出版社
-        bookInfo.add(cltBookPublishDate);//出版日期
-        bookInfo.add(cltBookId);//书刊编号
-        bookInfo.add(cltBookBarcode);//书刊条码
-        bookInfo.add(cltBookStack);//书    室
-        bookInfo.add(cltBookShelf);//书    架
-        bookInfo.add(cltBookPrice);//价格
-        bookInfo.add(cltBookNumber);//总册数
+        bookInfo.add(tableDataView);
 
         // -------------------------------------------------------------------------------------/
         jplBorrowSetting.setLayout(null);
@@ -325,10 +319,10 @@ public class BorrowOutView extends JDialog {
 
         // -------------------------------------------------------------------------------------/
         //添加监听事件
-        btnCancel.addActionListener(e -> bov.dispose());
+        btnCancel.addActionListener(e -> biv.dispose());
 
-        BorrowOutMouseListener listener = new BorrowOutMouseListener(this);
-        btnBorrow.addActionListener(listener);
+        BorrowInMouseListener listener = new BorrowInMouseListener(this);
+        btnBack.addActionListener(listener);
         btnNextBook.addActionListener(listener);
         btnNextReader.addActionListener(listener);
         btnPrevBook.addActionListener(listener);
@@ -342,7 +336,7 @@ public class BorrowOutView extends JDialog {
         contentView.add(jplBookSearch);
         contentView.add(bookInfo);
         contentView.add(jplBorrowSetting);
-        functionView.add(btnBorrow);
+        functionView.add(btnBack);
         functionView.add(btnCancel);
 
         mainView.add(functionView, BorderLayout.SOUTH);
@@ -350,6 +344,7 @@ public class BorrowOutView extends JDialog {
         this.add(mainView);
         this.setVisible(true);
     }
+
 
     /**
      * 创建一个搜索栏
@@ -406,8 +401,8 @@ public class BorrowOutView extends JDialog {
         return btnPrevBook;
     }
 
-    public JButton getBtnBorrow() {
-        return btnBorrow;
+    public JButton getBtnBack() {
+        return btnBack;
     }
 
     public ComboJLAndJT getCltBorrowDuration() {
@@ -426,22 +421,13 @@ public class BorrowOutView extends JDialog {
         return jtfBookKeyword;
     }
 
-    public BorrowOutServer getServer() {
+    public BorrowInServer getServer() {
         return server;
     }
 
     public ComboJLAndJT getCltReaderId() {
         return cltReaderId;
     }
-
-    public ComboJLAndJT getCltBookId() {
-        return cltBookId;
-    }
-
-    public ComboJLAndJT getCltBookNumber() {
-        return cltBookNumber;
-    }
-
 
 
 }

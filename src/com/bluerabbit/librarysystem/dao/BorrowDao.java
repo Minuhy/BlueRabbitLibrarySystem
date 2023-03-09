@@ -47,12 +47,12 @@ public class BorrowDao {
                 " ON  " +
                 "  t_borrow.reader_id = reader.ReaderID ";
 
-        if(isSearch){
-            sql = sql + " "+searchSql+" " +
-                    "ORDER BY t_borrow.create_timestamp DESC "+
+        if (isSearch) {
+            sql = sql + " " + searchSql + " " +
+                    "ORDER BY t_borrow.create_timestamp DESC " +
                     "LIMIT " + (PAGE_SIZE * page) + "," + PAGE_SIZE;
-        }else{
-            sql = sql + "ORDER BY t_borrow.create_timestamp DESC "+
+        } else {
+            sql = sql + "ORDER BY t_borrow.create_timestamp DESC " +
                     "LIMIT " + (PAGE_SIZE * page) + "," + PAGE_SIZE;
         }
 
@@ -67,8 +67,8 @@ public class BorrowDao {
         try {
             //获得操作句柄
             statement = conn.prepareStatement(sql);
-            if(isSearch){
-                statement.setString(1,keyWord);
+            if (isSearch) {
+                statement.setString(1, keyWord);
             }
             //根据SQL语句获取数据
             rs = statement.executeQuery();
@@ -109,10 +109,10 @@ public class BorrowDao {
     /**
      * 获取总数据量
      *
-     * @return 总数据量，获取失败返回 0
      * @param searchSql
      * @param keyWord
      * @param isSearch
+     * @return 总数据量，获取失败返回 0
      */
     public int getAllCount(String searchSql, String keyWord, boolean isSearch) {
         String sql = "SELECT " +
@@ -128,8 +128,8 @@ public class BorrowDao {
                 " ON  " +
                 "  t_borrow.reader_id = reader.ReaderID";
 
-        if(isSearch){
-            sql = sql + " "+searchSql;
+        if (isSearch) {
+            sql = sql + " " + searchSql;
         }
 
         //获得数据库连接
@@ -139,8 +139,8 @@ public class BorrowDao {
         try {
             //获得操作句柄
             statement = conn.prepareStatement(sql);
-            if(isSearch){
-                statement.setString(1,keyWord);
+            if (isSearch) {
+                statement.setString(1, keyWord);
             }
             //根据SQL语句获取数据
             rs = statement.executeQuery();
@@ -167,6 +167,7 @@ public class BorrowDao {
 
     /**
      * 获取借出的具体情况
+     *
      * @param borrowId 借出ID
      * @return BorrowBeans
      */
@@ -189,6 +190,12 @@ public class BorrowDao {
                 " book_info.Stack AS book_stack,  " +
                 " book_info.BookShelf AS book_shelf,  " +
                 " book_info.BookBarcode AS book_barcode,  " +
+
+                " book_info.SumQuantity AS book_total_number,  " +
+                " book_info.Quantity AS book_surplus_number,  " +
+                " book_info.LendTime AS book_lend_time,  " +
+                " book_info.Price AS book_price,  " +
+
                 " reader_info.ReaderID AS reader_id,  " +
                 " reader_info.ReaderName AS reader_name,  " +
                 " reader_info.Apart AS reader_apart,  " +
@@ -228,7 +235,7 @@ public class BorrowDao {
             statement = conn.prepareStatement(sql);
 
             // 传入参数
-            statement.setString(1,borrowId);
+            statement.setString(1, borrowId);
 
             //根据SQL语句获取数据
             rs = statement.executeQuery();
@@ -254,6 +261,14 @@ public class BorrowDao {
                 String bookBarcode = rs.getString("book_barcode");
                 String bookStack = rs.getString("book_stack");
                 String bookShelf = rs.getString("book_shelf");
+
+
+                String bookTotalNumber = rs.getString("book_total_number");//总册数
+                String bookSurplusNumber = rs.getString("book_surplus_number");//剩余册数
+                String bookPrice = rs.getString("book_price");//价格
+                String bookLendTime = rs.getString("book_lend_time");//借出次数
+
+
                 String readerId = rs.getString("reader_id");
                 String readerName = rs.getString("reader_name");
                 String readerApart = rs.getString("reader_apart");
@@ -273,6 +288,12 @@ public class BorrowDao {
                 beans.setPenalty(penalty);
                 beans.setStatus(status);
                 beans.setBookNumber(bookNumber);
+
+                beans.setBookTotalNumber(bookTotalNumber);
+                beans.setBookSurplusNumber(bookSurplusNumber);
+                beans.setBookLendTime(bookLendTime);
+                beans.setBookPrice(bookPrice);
+
                 beans.setBookName(bookName);
                 beans.setBookAuthor(bookAuthor);
                 beans.setBookPublisher(bookPublisher);
@@ -287,7 +308,7 @@ public class BorrowDao {
                 beans.setReaderClass(readerClass);
                 beans.setReaderTel(readerTel);
                 beans.setReaderSex(readerSex);
-            }else {
+            } else {
                 System.out.println("没有查到数据");
             }
         } catch (SQLException e) {
@@ -310,6 +331,7 @@ public class BorrowDao {
 
     /**
      * 获取借出的具体情况
+     *
      * @param borrowId 借出ID
      * @return BorrowBeans
      */
@@ -341,7 +363,7 @@ public class BorrowDao {
             statement = conn.prepareStatement(sql);
 
             // 传入参数
-            statement.setString(1,borrowId);
+            statement.setString(1, borrowId);
 
             //根据SQL语句获取数据
             rs = statement.executeQuery();
@@ -399,7 +421,7 @@ public class BorrowDao {
                 " DATE_FORMAT(PublishDate,'%Y-%m-%d') LIKE ? OR " +
                 " Stack LIKE ? OR " +
                 " BookShelf LIKE ? " +
-                "LIMIT "+page+", 1";
+                "LIMIT " + page + ", 1";
 
         //获得数据库连接
         Connection conn = DBUtil.getConn();
@@ -409,8 +431,8 @@ public class BorrowDao {
             //获得操作句柄
             statement = conn.prepareStatement(sql);
             // 插入数据
-            for(int i=0;i<8;i++){
-                statement.setString(i+1,keyword);
+            for (int i = 0; i < 8; i++) {
+                statement.setString(i + 1, keyword);
             }
             //根据SQL语句获取数据
             rs = statement.executeQuery();
@@ -448,6 +470,7 @@ public class BorrowDao {
 
     /**
      * 查询总数
+     *
      * @param keyword 关键词
      * @return 总数
      */
@@ -476,8 +499,8 @@ public class BorrowDao {
             //获得操作句柄
             statement = conn.prepareStatement(sql);
             // 插入数据
-            for(int i=0;i<8;i++){
-                statement.setString(i+1,keyword);
+            for (int i = 0; i < 8; i++) {
+                statement.setString(i + 1, keyword);
             }
             //根据SQL语句获取数据
             rs = statement.executeQuery();
@@ -526,7 +549,7 @@ public class BorrowDao {
                 " reader.Sex LIKE ? OR " +
                 " reader.Class LIKE ? OR " +
                 " reader.TelNo LIKE ? " +
-                "LIMIT "+page+", 1";
+                "LIMIT " + page + ", 1";
 
         //获得数据库连接
         Connection conn = DBUtil.getConn();
@@ -536,8 +559,8 @@ public class BorrowDao {
             //获得操作句柄
             statement = conn.prepareStatement(sql);
             // 插入数据
-            for(int i=0;i<6;i++){
-                statement.setString(i+1,keyword);
+            for (int i = 0; i < 6; i++) {
+                statement.setString(i + 1, keyword);
             }
             //根据SQL语句获取数据
             rs = statement.executeQuery();
@@ -571,6 +594,7 @@ public class BorrowDao {
 
     /**
      * 查询总数
+     *
      * @param keyword 关键词
      * @return 总数
      */
@@ -597,8 +621,8 @@ public class BorrowDao {
             //获得操作句柄
             statement = conn.prepareStatement(sql);
             // 插入数据
-            for(int i=0;i<6;i++){
-                statement.setString(i+1,keyword);
+            for (int i = 0; i < 6; i++) {
+                statement.setString(i + 1, keyword);
             }
             //根据SQL语句获取数据
             rs = statement.executeQuery();
@@ -624,39 +648,86 @@ public class BorrowDao {
     }
 
     public String borrowOut(String readerId, String bookId, String duration, String number, String adminID, String time) {
-        String sql ="INSERT INTO  " +
+        String sql = "INSERT INTO  " +
                 " `t_borrow` " +
                 " (`reader_id`, `book_id`, `borrow_admin_id`, " +
                 "`book_number`, `duration`, `create_timestamp`)  " +
                 " VALUES (?, ?, ?," +
                 " ?, ?, ?) ";
 
+        System.out.println("借出数据库操作");
+        System.out.println("sql" + sql);
+        System.out.println("readerId" + readerId);
+        System.out.println("bookId" + bookId);
+        System.out.println("adminID" + adminID);
+        System.out.println("number" + number);
+        System.out.println("duration" + duration);
+        System.out.println("time" + time);
+
+
         //获得数据库连接
         Connection conn = DBUtil.getConn();
         //声明句柄对象
         PreparedStatement statement = null;
-
         try {
+            // 开启事务
+            conn.setAutoCommit(false);
+
             //获得操作句柄
             statement = conn.prepareStatement(sql);
             //拼接语句
-            statement.setString(1,readerId);
-            statement.setString(2,bookId);
-            statement.setString(3,adminID);
-            statement.setString(4,number);
-            statement.setString(5,duration);
-            statement.setString(6,time);
+            statement.setString(1, readerId);
+            statement.setString(2, bookId);
+            statement.setString(3, adminID);
+            statement.setString(4, number);
+            statement.setString(5, duration);
+            statement.setString(6, time);
+
             //执行语句
-            if(statement.executeUpdate() == 1){
-                System.out.println("数据操作结果:"+1);
-                return null;
+            if (statement.executeUpdate() < 1) {
+                conn.rollback();
+                return "写入数据失败";
             }
-            return "写入数据失败";
+            statement.close();
+
+            //--------------------------更新图书数据-----------------------------------
+
+            sql = "UPDATE " +
+                    "`books_info` " +
+                    "SET `Quantity` = `Quantity` - ?, `LendTime` = `LendTime` + ? " +
+                    "WHERE `BookID` = ?";
+
+            statement = conn.prepareStatement(sql);
+            statement.setString(1, number);
+            statement.setString(2, number);
+            statement.setString(3, bookId);
+
+            //执行语句
+            if (statement.executeUpdate() < 1) {
+                conn.rollback();
+                return "更新数据失败";
+            }
+
+            // 提交数据
+            conn.commit();
+
         } catch (SQLException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException t) {
+                t.printStackTrace();
+                return "数据库错误：" + t.getMessage();
+            }
             return "数据库错误：" + e.getMessage();
-        }finally {
+        } finally {
+            try {
+                conn.setAutoCommit(true);
+            } catch (SQLException t) {
+                t.printStackTrace();
+            }
             //一定要做的事，释放连接
-            DBUtil.free(statement,conn);
+            DBUtil.free(statement, conn);
         }
+        return null;
     }
 }
