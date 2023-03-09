@@ -77,12 +77,22 @@
       <option name="presentableId" value="Default" />
       <updated>1678258258162</updated>
       <workItem from="1678258261101" duration="4342000" />
-      <workItem from="1678263081204" duration="31315000" />
+      <workItem from="1678263081204" duration="43710000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

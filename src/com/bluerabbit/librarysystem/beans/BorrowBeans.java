@@ -477,4 +477,24 @@ public class BorrowBeans {
     public void setId(String id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "BorrowBeans{" +
+                "book=" + book +
+                ", reader=" + reader +
+                ", id='" + id + '\'' +
+                ", createTimestamp='" + createTimestamp + '\'' +
+                ", willBackTimestamp='" + willBackTimestamp + '\'' +
+                ", isReturn='" + isReturn + '\'' +
+                ", borrowAdminId='" + borrowAdminId + '\'' +
+                ", returnAdminId='" + returnAdminId + '\'' +
+                ", borrowAdminName='" + borrowAdminName + '\'' +
+                ", returnAdminName='" + returnAdminName + '\'' +
+                ", updateTimestamp='" + updateTimestamp + '\'' +
+                ", penalty='" + penalty + '\'' +
+                ", status='" + status + '\'' +
+                ", bookNumber='" + bookNumber + '\'' +
+                '}';
+    }
 }

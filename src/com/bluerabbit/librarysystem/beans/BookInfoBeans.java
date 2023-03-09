@@ -172,4 +172,30 @@ WordsNumber varchar(20) comment '×ÖÊý'
 	public void setWordsNumber(String wordsNumber) {
 		this.WordsNumber = wordsNumber;
 	}
+
+	@Override
+	public String toString() {
+		return "BookInfoBeans{" +
+				"BookName='" + BookName + '\'' +
+				", SumQuantity=" + SumQuantity +
+				", Quantity=" + Quantity +
+				", LendTime=" + LendTime +
+				", BookID='" + BookID + '\'' +
+				", BookBarcode='" + BookBarcode + '\'' +
+				", BookClassify='" + BookClassify + '\'' +
+				", BookThem='" + BookThem + '\'' +
+				", Author='" + Author + '\'' +
+				", Publisher='" + Publisher + '\'' +
+				", PublishTime='" + PublishTime + '\'' +
+				", PublishDate='" + PublishDate + '\'' +
+				", BookType='" + BookType + '\'' +
+				", Stack='" + Stack + '\'' +
+				", BookShelf='" + BookShelf + '\'' +
+				", Price=" + Price +
+				", ContentText='" + ContentText + '\'' +
+				", Remark='" + Remark + '\'' +
+				", BookPage=" + BookPage +
+				", WordsNumber='" + WordsNumber + '\'' +
+				'}';
+	}
 }

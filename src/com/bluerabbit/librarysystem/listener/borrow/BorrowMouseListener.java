@@ -32,6 +32,7 @@ public class BorrowMouseListener implements java.awt.event.MouseListener {
         } else if(clicked == bv.getBtnBorrow()){
             System.out.println("½èÔÄ");
             new BorrowOutView(bv);
+            bv.updateTableData(1);
         }else if(clicked == bv.getExeInquire()){
             System.out.println("ËÑË÷");
             bv.updateTableData(1);

@@ -61,19 +61,19 @@
 ![管理员管理](images/AdminManageScan.jpg)
 <center>管理员管理：admin不是超级管理员，换了个账号，可直接改其他管理员信息（密码是MD5加密后保存的）</center>
 
-![借阅管理](images/BookOther.jpg)
-<center>借阅管理（实训结束后没有继续完善）</center>
+![借阅管理](images/Snipaste_2023-03-09_09-37-47.png)
+<center>借阅管理：实现了借出、还入、续借和借阅详情查看</center>
 
 ## 肆、数据库设计
 
 1. 创建数据库
 ```SQL
-CREATE DATABASE library_system;
+CREATE DATABASE br_library_system;
 ```
 
 2. 管理员表
 ```SQL
-use library_system;
+use br_library_system;
 create table Administrator(
 AdminID int not null,
 AdminName char(10) not null,
@@ -86,7 +86,7 @@ ifsuper boolean not null
 
 3. 图书信息表
 ```SQL
-use library_system;
+use br_library_system;
 create table Books_Info(
 BookName varchar(30) not null comment '书名' ,
 SumQuantity int not null comment '总册数' ,
@@ -114,7 +114,7 @@ WordsNumber varchar(20) comment '字数'
 
 4. 读者信息表
 ```SQL
-use library_system;
+use br_library_system;
 create table Reader(
 ReaderID varchar(20) not null primary key comment '学号' ,
 ReaderName char(30) not null comment '姓名' ,
@@ -126,7 +126,28 @@ TelNo char(20) comment '电话'
 ```
 ![读者信息表](images/SQLReader.jpg)
 
-5. 表关系
+5. 借阅信息表
+```SQL
+use br_library_system;
+CREATE TABLE `t_borrow`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '借阅ID',
+  `reader_id` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '读者ID',
+  `book_id` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '书ID',
+  `borrow_admin_id` int(11) NOT NULL COMMENT '借出操作者',
+  `return_admin_id` int(11) NULL DEFAULT NULL COMMENT '归还操作者',
+  `book_number` int(10) UNSIGNED NOT NULL DEFAULT 1 COMMENT '借出数量',
+  `duration` bigint(20) NOT NULL COMMENT '借出时长，借阅时间加这个就是应该要归还的时间',
+  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '图书状态：0正常，1破碎，2破损严重，3丢失',
+  `penalty` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0' COMMENT '罚金',
+  `create_timestamp` bigint(20) UNSIGNED NOT NULL COMMENT '借阅时间',
+  `update_timestamp` bigint(20) UNSIGNED NOT NULL DEFAULT 0 COMMENT '修改时间',
+  `return_timestamp` bigint(20) UNSIGNED NOT NULL DEFAULT 0 COMMENT '归还时间，0表示未归还',
+  PRIMARY KEY (`id`) USING BTREE
+)default charset=utf8;
+```
+![借阅信息表](images/Snipaste_2023-03-09_09-42-35.png)
+
+6. 表关系
 ![表关系](images/SQL.jpg)
 
 ## 伍、项目结构
@@ -289,11 +310,11 @@ public abstract class DBUtil {
 ```
 
 只需要改SQL的地址、账号和密码就可以开始使用！**但在此之前要设计好数据库！**
-
+这个类在`com.bluerabbit.librarysystem.database.DBUtil`中：
 ```java
 	private static String url = "jdbc:mysql://localhost:3306/library_system?useUnicode=true&characterEncoding=UTF-8";
 	private static String userName = "root";
-	private static String passWord = "YourPassword";
+	private static String passWord = "root123456";
 ```
 
 
@@ -342,7 +363,7 @@ public class BlueRabbitLibrarySystem {
 
 ```
 
-- 登录界面：主要负责视图的初始化和监听层的启动
+- 登录界面：主要负责视图的初始化和监听层的启动（其他界面一样的原理，这里以登录界面举例）
 
 *重点内容 ：
 

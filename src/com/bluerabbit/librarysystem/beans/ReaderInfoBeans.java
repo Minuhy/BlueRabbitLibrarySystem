@@ -48,6 +48,16 @@ public class ReaderInfoBeans {
 			public void setTelNo(String telNo) {
 				TelNo = telNo;
 			}
-			
-			
+
+	@Override
+	public String toString() {
+		return "ReaderInfoBeans{" +
+				"ReaderID='" + ReaderID + '\'' +
+				", ReaderName='" + ReaderName + '\'' +
+				", Apart='" + Apart + '\'' +
+				", Sex='" + Sex + '\'' +
+				", TheClass='" + TheClass + '\'' +
+				", TelNo='" + TelNo + '\'' +
+				'}';
+	}
 }

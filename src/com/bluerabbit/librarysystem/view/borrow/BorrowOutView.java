@@ -2,12 +2,14 @@ package com.bluerabbit.librarysystem.view.borrow;
 
 import com.bluerabbit.librarysystem.beans.BookInfoBeans;
 import com.bluerabbit.librarysystem.beans.ReaderInfoBeans;
+import com.bluerabbit.librarysystem.listener.borrow.BorrowOutMouseListener;
 import com.bluerabbit.librarysystem.service.borrow.BorrowOutServer;
 import com.bluerabbit.librarysystem.view.CenterView;
 import com.bluerabbit.librarysystem.view.ComboJLAndJT;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
 
 /**
  * 借出处理框
@@ -205,7 +207,7 @@ public class BorrowOutView extends JDialog {
     /**
      * 重置数据
      */
-    private void resetData() {
+    public void resetData() {
         // 借阅设置
 
         //书籍信息 6
@@ -217,6 +219,8 @@ public class BorrowOutView extends JDialog {
         cltBookBarcode.setIText("");//书刊条码
         cltBookStack.setIText("");//书    室
         cltBookShelf.setIText("");//书    架
+        cltBookNumber.setIText(""); // 剩余册数
+        cltBookPrice.setIText(""); // 价格
         jlbBook.setText("搜索书籍");
 
         //个人信息 6
@@ -224,6 +228,7 @@ public class BorrowOutView extends JDialog {
         cltReaderName.setIText("");//姓名
         cltReaderApart.setIText("");//学院
         cltReaderClass.setIText("");//班级
+        cltReaderTel.setIText("");//班级
 
         jcbSex.setSelectedIndex(0);
 
@@ -323,6 +328,15 @@ public class BorrowOutView extends JDialog {
         //添加监听事件
         btnCancel.addActionListener(e -> bov.dispose());
 
+        BorrowOutMouseListener listener = new BorrowOutMouseListener(this);
+        btnBorrow.addActionListener(listener);
+        btnNextBook.addActionListener(listener);
+        btnNextReader.addActionListener(listener);
+        btnPrevBook.addActionListener(listener);
+        btnPrevReader.addActionListener(listener);
+        btnSearchBook.addActionListener(listener);
+        btnSearchReader.addActionListener(listener);
+
         //添加布局
         contentView.add(jplReaderSearch);
         contentView.add(jplReaderInfo);
@@ -354,7 +368,7 @@ public class BorrowOutView extends JDialog {
         jPanel.setBackground(new Color(236, 233, 216));
 
         jLabel.setFont(new Font(Font.SERIF, Font.PLAIN, 20));
-        jLabel.setBounds(30, 10, 160, 30);
+        jLabel.setBounds(30, 10, 240, 30);
         jPanel.add(jLabel);
 
         jtfKeyword.setBounds(unitW - 10 - 60 - 10 - 60 - 10 - 60 - 10 - 200 - 10, 10, 200, 30);
@@ -396,4 +410,39 @@ public class BorrowOutView extends JDialog {
     public JButton getBtnBorrow() {
         return btnBorrow;
     }
+
+    public ComboJLAndJT getCltBorrowDuration() {
+        return cltBorrowDuration;
+    }
+
+    public ComboJLAndJT getCltBorrowNumber() {
+        return cltBorrowNumber;
+    }
+
+    public JTextField getJtfReaderKeyword() {
+        return jtfReaderKeyword;
+    }
+
+    public JTextField getJtfBookKeyword() {
+        return jtfBookKeyword;
+    }
+
+    public BorrowOutServer getServer() {
+        return server;
+    }
+
+    public ComboJLAndJT getCltReaderId() {
+        return cltReaderId;
+    }
+
+    public ComboJLAndJT getCltBookId() {
+        return cltBookId;
+    }
+
+    public ComboJLAndJT getCltBookNumber() {
+        return cltBookNumber;
+    }
+
+
+
 }

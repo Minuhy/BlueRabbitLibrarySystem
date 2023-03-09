@@ -62,6 +62,7 @@ public class BorrowInfoView extends JDialog {
 
     public BorrowInfoView(BorrowBookView bv, String borrowDataId) {
         super(bv, "借阅详情", true);
+        System.out.println("借阅编号：" + borrowDataId);
         biv = this;
         //获得父视图的大小
         windowsHeight = bv.getHeight();
@@ -130,7 +131,33 @@ public class BorrowInfoView extends JDialog {
 
     private void loader(String borrowDataId) {
         //获取借阅信息
-        BorrowBeans beans = new BorrowDao().getBorrowInfoByBorrowID(borrowDataId);
+        BorrowDao dao = new BorrowDao();
+        BorrowBeans beans = dao.getBorrowInfoByBorrowID(borrowDataId);
+
+        if(beans == null){
+            JOptionPane.showMessageDialog(this,"没有查到数据");
+            return;
+        }
+
+        // 如果有还回的管理员记录，则查
+        try{
+            if(beans.getReturnAdminId()!=null) {
+                if(!beans.getReturnAdminId().equals("")) {
+                    if (Integer.parseInt(beans.getReturnAdminId()) != 0) {
+                        BorrowBeans returnBeans = dao.getBorrowInfoInByBorrowID(borrowDataId);
+                        if (returnBeans != null) {
+                            beans.setReturnAdminName(returnBeans.getReturnAdminName());
+                        }
+                    }
+                }
+            }else{
+                beans.setReturnAdminId("未还入");
+            }
+        }catch (Exception e){
+            System.out.println("查找归还管理员时出错：" + e.getMessage());
+        }
+
+
 
         //设置借阅信息
         //借阅信息

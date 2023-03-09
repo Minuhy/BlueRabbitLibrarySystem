@@ -32,7 +32,7 @@ import com.bluerabbit.librarysystem.listener.MainView_exit_MouseListener;
  */
 @SuppressWarnings("serial")
 public class MainView extends JFrame {
-    private AdministratorBeans admin;
+    private static AdministratorBeans admin;
     private JPanel mainWin;
     private JLabel status;
     private JLabel adminName;
@@ -254,5 +254,8 @@ public class MainView extends JFrame {
         }
     }
 
+    public static AdministratorBeans getAdmin() {
+        return admin;
+    }
 }
 

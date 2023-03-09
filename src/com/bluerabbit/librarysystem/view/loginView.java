@@ -6,15 +6,7 @@ import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 import com.bluerabbit.librarysystem.listener.LoginView_helpButton_ActionListener;
 import com.bluerabbit.librarysystem.listener.LoginView_loginButton_ActionListener;
@@ -56,7 +48,7 @@ public class loginView extends JFrame{
 			//这样就实现了背景图
 		};
 		//新建一个label，传入初始参数，暨要显示的内容，后面也可用setText方法来更新
-		loginTitle = new JLabel("蓝兔图书管理系统");
+		loginTitle = new JLabel("蓝兔图书管理系统",JLabel.CENTER);
 		loginName = new JLabel("账号：");
 		loginPWD = new JLabel("密码：");
 		loginButton = new JButton("登录");
@@ -76,7 +68,7 @@ public class loginView extends JFrame{
 		//设置标题，this表示LoginView这个界面，所以里的标题是界面的标题
 		this.setTitle("蓝兔图书管理系统 - 管理员登录");
 		//设置窗口可关闭，退出的方式有多种，exit和dispose
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		//设置窗口大小
 		this.setSize(550,350);
 		//禁用或启用此 frame 的装饰
@@ -94,14 +86,14 @@ public class loginView extends JFrame{
 
 		//宽高，宽高
 		//通过setFont方法来设置标签的字体，包括大小
-		loginTitle.setFont(new Font("微软雅黑", 3, 27));
+		loginTitle.setFont(new Font("微软雅黑", Font.BOLD | Font.ITALIC, 27));
 		//setBounds是null的灵魂,设置坐标和大小，宽高，宽高
-		loginTitle.setBounds(100, 20, 250, 30);
+		loginTitle.setBounds(0, 20, 500, 30);
 
-		loginName.setFont(new Font("微软雅黑", 0, 17));
+		loginName.setFont(new Font("微软雅黑", Font.PLAIN, 17));
 		loginName.setBounds(115, 80, 60, 20);
 
-		loginPWD.setFont(new Font("微软雅黑", 0, 17));
+		loginPWD.setFont(new Font("微软雅黑", Font.PLAIN, 17));
 		loginPWD.setBounds(115, 120, 60, 20);
 
 		//登录按钮
