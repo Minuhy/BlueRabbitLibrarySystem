@@ -62,15 +62,15 @@
 ![管理员管理](images/AdminManageScan.jpg)
 <center>管理员管理：admin不是超级管理员，换了个账号，可直接改其他管理员信息（密码是MD5加密后保存的）</center>
 
-![借阅管理](images/Snipaste_2023-03-09_09-37-47.png)
+![图书借阅](images/Snipaste_2023-03-09_09-37-47.png)
 
 <center>借阅管理：借出</center>
 
-![借阅管理](images/Snipaste_2023-03-10_21-01-57.png)
+![图书归还](images/Snipaste_2023-03-10_21-01-57.png)
 
 <center>借阅管理：还入</center>
 
-![image-20230310210543192](images/image-20230310210543192.png)
+![借阅详情](images/image-20230310210543192.png)
 
 <center>借阅管理：详情查看，还有续借等功能</center>
 
@@ -361,7 +361,7 @@ public class BlueRabbitLibrarySystem {
 
 - 登录界面：主要负责视图的初始化和监听层的启动（其他界面一样的原理，这里以登录界面举例）
 
-*重点内容 ：
+* 重点内容 ：
 
     将图片标签放在窗体底层面板，然后将窗体转化为JPan的容器，将JPan设为透明，背景图片就设置好了，之后就可以直接在该JPan中添加组件*
 ```java
