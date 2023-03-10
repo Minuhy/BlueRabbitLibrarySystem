@@ -310,7 +310,8 @@ public class BorrowInAndRenewView extends JDialog {
      */
     private void createSearchBar(int unitW, JPanel jPanel, JLabel jLabel, JTextField jtfKeyword, JButton btnSearch, JButton btnPrev, JButton btnNext) {
         jPanel.setBorder(BorderFactory.createEtchedBorder());
-        jPanel.setBackground(new Color(236, 233, 216));
+        // ÔÂ°×
+        jPanel.setBackground(new Color(212, 227, 237));
 
         jLabel.setFont(new Font(Font.SERIF, Font.PLAIN, 20));
         jLabel.setBounds(30, 5, 240, 30);

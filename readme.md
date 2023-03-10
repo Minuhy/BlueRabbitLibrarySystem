@@ -10,12 +10,13 @@
 
 ## 壹、功能
 
-1. 管理员登录、改密码、资料等
-2. 有超级权限的账号能管理其他管理员
-3. 图书信息的增删改查
-4. 能对读者的信息进行管理
-5. 借阅管理（暂停）
-6. 退出登录
+1. 管理员登录
+2. 管理员改密码、编辑资料等
+3. 有超级权限的账号能管理其他管理员
+4. 图书信息的增删改查
+5. 能对读者的信息进行管理
+6. 借阅管理：图书借出、还入和续借等
+7. 退出登录
 
 ## 贰、相关技术及开发环境
 
@@ -62,7 +63,16 @@
 <center>管理员管理：admin不是超级管理员，换了个账号，可直接改其他管理员信息（密码是MD5加密后保存的）</center>
 
 ![借阅管理](images/Snipaste_2023-03-09_09-37-47.png)
-<center>借阅管理：实现了借出、还入、续借和借阅详情查看</center>
+
+<center>借阅管理：借出</center>
+
+![借阅管理](images/Snipaste_2023-03-10_21-01-57.png)
+
+<center>借阅管理：还入</center>
+
+![image-20230310210543192](images/image-20230310210543192.png)
+
+<center>借阅管理：详情查看，还有续借等功能</center>
 
 ## 肆、数据库设计
 
@@ -231,17 +241,6 @@ public abstract class DBUtil {
 			JOptionPane.showMessageDialog(null, "服务器连接失败");
 			e.printStackTrace();
 		}
-
-//		new Thread(){
-//		    public void run(){
-//		        try {
-//		            Connection con = DriverManager.getConnection(connectString, sql_user, sql_pwd);
-//		            con.close();
-//		        } catch (SQLException e) { //连接失败
-//		            e.printStackTrace();
-//		        }
-//		    }
-//		}.start();
 		
 		return conn;
 	}
@@ -310,7 +309,9 @@ public abstract class DBUtil {
 ```
 
 只需要改SQL的地址、账号和密码就可以开始使用！**但在此之前要设计好数据库！**
-这个类在`com.bluerabbit.librarysystem.database.DBUtil`中：
+
+> 这个类在`com.bluerabbit.librarysystem.database.DBUtil`中：
+
 ```java
 	private static String url = "jdbc:mysql://localhost:3306/library_system?useUnicode=true&characterEncoding=UTF-8";
 	private static String userName = "root";
@@ -332,35 +333,30 @@ import com.bluerabbit.librarysystem.view.loginView;
 
 /**
  * 主函数，设置皮肤，启动窗口
- * @author minuy
  *
+ * @author minuhy
  */
 public class BlueRabbitLibrarySystem {
 
-	/**
-	 * @param args
-	 */
-	
-	public static void main(String[] args) {
-
-		try
-		{
-			BeautyEyeLNFHelper.frameBorderStyle = FrameBorderStyle.translucencyAppleLike;
-			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
-			UIManager.put("RootPane.setupButtonVisible", false);
-		}
-		catch(Exception e)
-		{
-			System.out.println(e);
-		}
-
-
-		new loginView();
-		
-
-	}
+    /**
+     * 主函数
+     *
+     * @param args 不需要参数
+     */
+    public static void main(String[] args) {
+        try {
+            BeautyEyeLNFHelper.frameBorderStyle = FrameBorderStyle.translucencyAppleLike;
+            org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
+            UIManager.put("RootPane.setupButtonVisible", false);
+            BeautyEyeLNFHelper.translucencyAtFrameInactive = false; // 关闭半透明效果
+        } catch (Exception e) {
+            System.out.println("在启用皮肤时出错" + e.getMessage());
+        }
+        
+        // 开启登录界面
+        new loginView();
+    }
 }
-
 ```
 
 - 登录界面：主要负责视图的初始化和监听层的启动（其他界面一样的原理，这里以登录界面举例）
@@ -391,7 +387,7 @@ import com.bluerabbit.librarysystem.listener.LoginView_helpButton_ActionListener
 import com.bluerabbit.librarysystem.listener.LoginView_loginButton_ActionListener;
 /**
  * 登录界面
- * @author minuy
+ * @author minuhy
  *
  */
 @SuppressWarnings("serial")
@@ -567,7 +563,7 @@ import com.bluerabbit.librarysystem.view.MainView;
 import com.bluerabbit.librarysystem.view.loginView;
 /**
  * 登录界面的登录按钮监听类
- * @author minuy
+ * @author minuhy
  *
  */
 public class LoginView_loginButton_ActionListener implements ActionListener {
