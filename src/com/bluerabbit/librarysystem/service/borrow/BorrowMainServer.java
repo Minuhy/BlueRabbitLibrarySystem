@@ -47,8 +47,9 @@ public class BorrowMainServer {
         //获取数据
 
         totalCount = dao.getAllCount(searchSql, keyWord,isSearch);
-        System.out.println(totalCount);
-        this.totalPage = totalCount / BorrowDao.PAGE_SIZE + (totalCount % BorrowDao.PAGE_SIZE) != 0 ? 1 : 0;
+        System.out.println("借书记录总计：" + totalCount);
+        this.totalPage = (totalCount / BorrowDao.PAGE_SIZE) + ((totalCount % BorrowDao.PAGE_SIZE) != 0 ? 1 : 0);
+        System.out.println("借书记录总页数：" + totalPage);
         if (page < 1) {
             page = 1;
         } else if (page > this.totalPage) {

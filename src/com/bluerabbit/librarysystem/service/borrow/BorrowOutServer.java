@@ -106,7 +106,7 @@ public class BorrowOutServer {
      */
     public void prevBook() {
         if (keywordBook == null || keywordBook.equals("")) {
-            JOptionPane.showMessageDialog(bov, "请输入书籍关键词搜索");
+            JOptionPane.showMessageDialog(bov, "请输入书籍关键词点搜索后再操作此按钮");
             return;
         }
 
@@ -126,7 +126,7 @@ public class BorrowOutServer {
      */
     public void nextBook() {
         if (keywordBook == null || keywordBook.equals("")) {
-            JOptionPane.showMessageDialog(bov, "请输入书籍关键词搜索");
+            JOptionPane.showMessageDialog(bov, "请输入书籍关键词点搜索后再操作此按钮");
             return;
         }
 
@@ -147,7 +147,7 @@ public class BorrowOutServer {
     public void nextReader() {
 
         if (keywordReader == null || keywordReader.equals("")) {
-            JOptionPane.showMessageDialog(bov, "请输入读者关键词搜索");
+            JOptionPane.showMessageDialog(bov, "请输入读者关键词点搜索后再操作此按钮");
             return;
         }
 
@@ -168,7 +168,7 @@ public class BorrowOutServer {
     public void prevReader() {
 
         if (keywordReader == null || keywordReader.equals("")) {
-            JOptionPane.showMessageDialog(bov, "请输入读者关键词搜索");
+            JOptionPane.showMessageDialog(bov, "请输入读者关键词点搜索后再操作此按钮");
             return;
         }
 
@@ -191,7 +191,7 @@ public class BorrowOutServer {
         keywordBook = bov.getJtfBookKeyword().getText();
 
         if (keywordBook == null || keywordBook.equals("")) {
-            JOptionPane.showMessageDialog(bov, "请输入书籍关键词搜索");
+            JOptionPane.showMessageDialog(bov, "请先输入书籍关键词再点搜索");
             return;
         }
 
@@ -219,7 +219,7 @@ public class BorrowOutServer {
         keywordReader = bov.getJtfReaderKeyword().getText();
 
         if (keywordReader == null || keywordReader.equals("")) {
-            JOptionPane.showMessageDialog(bov, "请输入读者关键词搜索");
+            JOptionPane.showMessageDialog(bov, "请先输入读者关键词再点搜索");
             return;
         }
 

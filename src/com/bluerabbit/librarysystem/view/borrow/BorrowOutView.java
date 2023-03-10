@@ -27,7 +27,7 @@ public class BorrowOutView extends JDialog {
     private final JPanel jplReaderSearch;
     private final JPanel jplReaderInfo;
     private final JPanel jplBookSearch;
-    private final JPanel bookInfo;
+    private final JPanel jplBookInfo;
     private final JPanel jplBorrowSetting;
 
     // 借出设置
@@ -79,7 +79,7 @@ public class BorrowOutView extends JDialog {
     private final ComboJLAndJT cltBookPrice;//价格
     private final ComboJLAndJT cltBookNumber;//剩余册数
 
-
+    // 服务
     BorrowOutServer server;
 
     public BorrowOutView(BorrowBookView bv) {
@@ -98,20 +98,20 @@ public class BorrowOutView extends JDialog {
         jplReaderSearch = new JPanel();
         jplReaderInfo = new JPanel();
         jplBookSearch = new JPanel();
-        bookInfo = new JPanel();
+        jplBookInfo = new JPanel();
         jplSex = new JPanel();
         jplBorrowSetting = new JPanel();
 
         //读者信息搜索
         jtfReaderKeyword = new JTextField(); // 搜索输入框
-        jlbReader = new JLabel("搜索读者"); // 搜索输入框
+        jlbReader = new JLabel("读者信息"); // 搜索输入框
         btnSearchReader = new JButton("搜索"); // 搜索按钮
         btnNextReader = new JButton("下一个"); // 下一个结果
         btnPrevReader = new JButton("上一个"); // 上一个结果
 
         //书籍信息搜索
         jtfBookKeyword = new JTextField(); // 搜索输入框
-        jlbBook = new JLabel("搜索书籍"); // 搜索输入框
+        jlbBook = new JLabel("书籍信息"); // 搜索输入框
         btnSearchBook = new JButton("搜索"); // 搜索按钮
         btnNextBook = new JButton("下一个"); // 下一个结果
         btnPrevBook = new JButton("上一个"); // 上一个结果
@@ -121,7 +121,7 @@ public class BorrowOutView extends JDialog {
         cltBorrowNumber = new ComboJLAndJT("借出数量（本）", 30, true);//姓名
         jlbBorrowSetting = new JLabel("借出设置");
 
-        //个人信息 6
+        //个人信息
         cltReaderId = new ComboJLAndJT("学    号：", 30);//学号
         cltReaderName = new ComboJLAndJT("姓    名：", 30);//姓名
         cltReaderApart = new ComboJLAndJT("学    院：", 30);//学院
@@ -131,8 +131,7 @@ public class BorrowOutView extends JDialog {
         jcbSex.setEnabled(false);
         jlbSex = new JLabel("性    别：");
 
-
-        //书籍信息 6
+        //书籍信息
         cltBookName = new ComboJLAndJT("书    名：");//书名
         cltBookAuthor = new ComboJLAndJT("作    者：");//作者
         cltBookPublisher = new ComboJLAndJT("出 版 社：");//出版社
@@ -144,7 +143,6 @@ public class BorrowOutView extends JDialog {
         cltBookShelf = new ComboJLAndJT("书    架：");//书    架
         cltBookPrice = new ComboJLAndJT("价    格：");//价    格
         cltBookNumber = new ComboJLAndJT("剩余册数：");//剩余册数
-
 
         btnBorrow = new JButton("借出");
         btnCancel = new JButton("取消");
@@ -175,7 +173,7 @@ public class BorrowOutView extends JDialog {
         cltBookPrice.setIText(beans.getPrice() + ""); // 价格
         cltBookNumber.setIText(beans.getQuantity() + ""); // 剩余册数
 
-        jlbBook.setText("书籍搜索结果（" + cp + "/" + p + "）");
+        jlbBook.setText("书籍信息搜索结果（" + cp + "/" + p + "）");
     }
 
     /**
@@ -200,7 +198,7 @@ public class BorrowOutView extends JDialog {
             jcbSex.setSelectedIndex(2);
         }
 
-        jlbReader.setText("读者搜索结果（" + cp + "/" + p + "）");
+        jlbReader.setText("读者信息搜索结果（" + cp + "/" + p + "）");
     }
 
     /**
@@ -220,7 +218,7 @@ public class BorrowOutView extends JDialog {
         cltBookShelf.setIText("");//书    架
         cltBookNumber.setIText(""); // 剩余册数
         cltBookPrice.setIText(""); // 价格
-        jlbBook.setText("搜索书籍");
+        jlbBook.setText("书籍信息");
 
         //个人信息 6
         cltReaderId.setIText("");//学号
@@ -231,12 +229,12 @@ public class BorrowOutView extends JDialog {
 
         jcbSex.setSelectedIndex(0);
 
-        jlbReader.setText("搜索读者");
+        jlbReader.setText("读者信息");
     }
 
     private void Init() {
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        this.setSize(windowsWidth - 200, windowsHeight - 56);
+        this.setSize(windowsWidth - 200, windowsHeight - 40);
         CenterView.CenterByWindow(this);
         //不允许用户调整窗口大小
         this.setResizable(false);
@@ -250,20 +248,19 @@ public class BorrowOutView extends JDialog {
         contentView.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.GRAY));
 
         //内容部分,h:wh-219,w:ww-130
-        int unitH = (windowsHeight - 219 + 44) / 12;
+        int unitH = (windowsHeight - 219 + 60) / 12;
         int unitW = (windowsWidth - 154 - 100);
-
 
         int heightOffset = 5;
 
         // 读者信息搜索导航栏 -------------------------------------------------------------------------------------/
-        int xNav = 5,y1=5,widthNav=unitW - 10,heightNav=40;
+        int xNav = 5, y1 = 3, widthNav = unitW - 10, heightNav = 40;
         jplReaderSearch.setLayout(null);
         jplReaderSearch.setBounds(xNav, y1, widthNav, heightNav);
         createSearchBar(unitW, jplReaderSearch, jlbReader, jtfReaderKeyword, btnSearchReader, btnPrevReader, btnNextReader);
 
         // 读者信息表格 -------------------------------------------------------------------------------------/
-        int xInfo = 10,y2=y1 + heightNav+heightOffset,widthInfo=unitW - 20,height2 = unitH * 2;
+        int xInfo = 10, y2 = y1 + heightNav + heightOffset, widthInfo = unitW - 20, height2 = unitH * 2;
         jplReaderInfo.setLayout(new GridLayout(2, 3));
         jplReaderInfo.setBounds(xInfo, y2, widthInfo, height2);
 
@@ -284,30 +281,30 @@ public class BorrowOutView extends JDialog {
         jplReaderInfo.add(cltReaderTel);//联系方式
 
         // 书籍信息搜索栏 -------------------------------------------------------------------------------------/
-        int y3=y2+height2+heightOffset;
+        int y3 = y2 + height2 + heightOffset;
         jplBookSearch.setLayout(null);
         jplBookSearch.setBounds(xNav, y3, widthNav, heightNav);
         createSearchBar(unitW, jplBookSearch, jlbBook, jtfBookKeyword, btnSearchBook, btnPrevBook, btnNextBook);
 
         // 书籍信息表格 -------------------------------------------------------------------------------------/
-        int y4=y3+heightNav+heightOffset,height4 = unitH * 5;
-        bookInfo.setLayout(new GridLayout(5, 2));
-        bookInfo.setBounds(xInfo, y4, widthInfo,height4);
+        int y4 = y3 + heightNav + heightOffset, height4 = unitH * 5;
+        jplBookInfo.setLayout(new GridLayout(5, 2));
+        jplBookInfo.setBounds(xInfo, y4, widthInfo, height4);
 
         //书籍信息
-        bookInfo.add(cltBookName);//书名
-        bookInfo.add(cltBookAuthor);//作者
-        bookInfo.add(cltBookPublisher);//出版社
-        bookInfo.add(cltBookPublishDate);//出版日期
-        bookInfo.add(cltBookId);//书刊编号
-        bookInfo.add(cltBookBarcode);//书刊条码
-        bookInfo.add(cltBookStack);//书    室
-        bookInfo.add(cltBookShelf);//书    架
-        bookInfo.add(cltBookPrice);//价格
-        bookInfo.add(cltBookNumber);//总册数
+        jplBookInfo.add(cltBookName);//书名
+        jplBookInfo.add(cltBookAuthor);//作者
+        jplBookInfo.add(cltBookPublisher);//出版社
+        jplBookInfo.add(cltBookPublishDate);//出版日期
+        jplBookInfo.add(cltBookId);//书刊编号
+        jplBookInfo.add(cltBookBarcode);//书刊条码
+        jplBookInfo.add(cltBookStack);//书    室
+        jplBookInfo.add(cltBookShelf);//书    架
+        jplBookInfo.add(cltBookPrice);//价格
+        jplBookInfo.add(cltBookNumber);//总册数
 
         // 借出设置导航栏 -------------------------------------------------------------------------------------/
-        int y5=y4+height4+heightOffset,heightSetting = 63;
+        int y5 = y4 + height4 + heightOffset, heightSetting = 63;
         jplBorrowSetting.setLayout(null);
         jplBorrowSetting.setBounds(xNav, y5, widthNav, heightSetting);
         jplBorrowSetting.setBorder(BorderFactory.createEtchedBorder());
@@ -345,7 +342,7 @@ public class BorrowOutView extends JDialog {
         contentView.add(jplReaderSearch);
         contentView.add(jplReaderInfo);
         contentView.add(jplBookSearch);
-        contentView.add(bookInfo);
+        contentView.add(jplBookInfo);
         contentView.add(jplBorrowSetting);
         functionView.add(btnBorrow);
         functionView.add(btnCancel);
@@ -372,7 +369,7 @@ public class BorrowOutView extends JDialog {
         jPanel.setBackground(new Color(236, 233, 216));
 
         jLabel.setFont(new Font(Font.SERIF, Font.PLAIN, 20));
-        jLabel.setBounds(30, 5, 240, 30);
+        jLabel.setBounds(30, 5, 400, 30);
         jPanel.add(jLabel);
 
         jtfKeyword.setBounds(unitW - 10 - 60 - 10 - 60 - 10 - 60 - 10 - 200 - 10, 5, 200, 30);
@@ -446,7 +443,6 @@ public class BorrowOutView extends JDialog {
     public ComboJLAndJT getCltBookNumber() {
         return cltBookNumber;
     }
-
 
 
 }

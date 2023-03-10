@@ -90,7 +90,7 @@ public class BorrowBookView extends JDialog {
 
     private void Init() {
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        this.setSize(windowsWidth-100, windowsHeight -100);
+        this.setSize(windowsWidth-100, windowsHeight -118);
         CenterView.CenterByWindow(this);
         //不允许用户调整窗口大小
         this.setResizable(false);
@@ -123,10 +123,8 @@ public class BorrowBookView extends JDialog {
         btnRenew.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         btnClose.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 
-
         btnPrePage.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         btnNexPage.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
-
 
         // 添加按钮
         buttonView.add(btnBorrow,BorderLayout.CENTER);
@@ -163,9 +161,7 @@ public class BorrowBookView extends JDialog {
         //为搜索按钮添加监听
         exeInquire.addMouseListener(listener);
 
-
         //表格的处理
-
         tableDataView.addMouseListener(listener);
 
         snpView.getViewport().add(tableDataView);
@@ -186,17 +182,12 @@ public class BorrowBookView extends JDialog {
 
         btnPrePage.addMouseListener(listener);
         btnNexPage.addMouseListener(listener);
-
-
     }
 
     private void showView(){
         this.add(jPanelBorrow);
         this.setVisible(true);
     }
-
-
-
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public void setTableData(List<BorrowBeans> list) {
@@ -235,7 +226,7 @@ public class BorrowBookView extends JDialog {
         this.tableDataView.setModel(dtmView);
 
         //设置表格自适应数据
-        //tableDataView.FitTableColumns();
+        tableDataView.FitTableColumns();
     }
 
 

@@ -18,7 +18,7 @@ import java.util.List;
  * @date 2023/3/8 16:59
  */
 public class BorrowDao {
-    public final static int PAGE_SIZE = 10;
+    public final static int PAGE_SIZE = 12;
 
     public List<BorrowBeans> getAllBorrow(String searchSql, String keyWord, int page, boolean isSearch) {
 
