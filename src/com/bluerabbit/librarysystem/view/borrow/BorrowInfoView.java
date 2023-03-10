@@ -89,7 +89,7 @@ public class BorrowInfoView extends JDialog {
         cltBorrowTime = new ComboJLAndJT("借阅时间：");//借阅时间
         cltBorrowWillReturn = new ComboJLAndJT("预计归还：");//预计归还时间
         cltBorrowNumber = new ComboJLAndJT("借阅数量：");//借阅书籍的数量
-        cltBorrowCoin = new ComboJLAndJT("预计交费：");//预计交费
+        cltBorrowCoin = new ComboJLAndJT("交    费：");//预计交费
         cltBorrowAdmin = new ComboJLAndJT("借出管理：");//借出管理员
         cltBorrowReturnAdmin = new ComboJLAndJT("还入管理：");//还入管理员
 
