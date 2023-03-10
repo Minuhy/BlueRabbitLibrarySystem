@@ -1,107 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ChangeListManager">
-    <list default="true" id="29185e9b-4ec8-4285-b1f0-c352d2ed0f55" name="Default Changelist" comment="修正文档" />
-    <option name="SHOW_DIALOG" value="false" />
-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
-    <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProjectId" id="2MilOieiKSGYJ3kexDi9EaBJxOE" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent">
-    <property name="DatabaseDriversLRU" value="mysql.8" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/com/bluerabbit/librarysystem/dao/BookInfoUpdate.java" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Problems" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="SQL Resolution Scopes" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.bluerabbit.librarysystem.service.borrow" />
-      <recent name="com.bluerabbit.librarysystem.listener.borrow" />
-    </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="BlueRabbitLibrarySystem" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.bluerabbit.librarysystem.BlueRabbitLibrarySystem" />
-      <module name="LibrarySystem" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.bluerabbit.librarysystem.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="应用程序.BlueRabbitLibrarySystem" />
-      </list>
-    </recent_temporary>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="29185e9b-4ec8-4285-b1f0-c352d2ed0f55" name="Default Changelist" comment="" />
-      <created>1678258258162</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1678258258162</updated>
-      <workItem from="1678258261101" duration="4342000" />
-      <workItem from="1678263081204" duration="85557000" />
-    </task>
-    <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.NullPointerException" package="java.lang" />
-          <option name="timeStamp" value="1" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
-  </component>
+	<component name="ChangeListManager">
+		<list default="true" id="29185e9b-4ec8-4285-b1f0-c352d2ed0f55"
+			name="Default Changelist" comment="修正文档" />
+		<option name="SHOW_DIALOG" value="false" />
+		<option name="HIGHLIGHT_CONFLICTS" value="true" />
+		<option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+		<option name="LAST_RESOLUTION" value="IGNORE" />
+	</component>
+	<component name="FileTemplateManagerImpl">
+		<option name="RECENT_TEMPLATES">
+			<list>
+				<option value="Class" />
+			</list>
+		</option>
+	</component>
+	<component name="Git.Settings">
+		<option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+	</component>
+	<component name="ProjectId" id="2MilOieiKSGYJ3kexDi9EaBJxOE" />
+	<component name="ProjectViewState">
+		<option name="hideEmptyMiddlePackages" value="true" />
+		<option name="showLibraryContents" value="true" />
+	</component>
+	<component name="PropertiesComponent">
+		<property name="DatabaseDriversLRU" value="mysql.8" />
+		<property name="RunOnceActivity.OpenProjectViewOnStart"
+			value="true" />
+		<property name="RunOnceActivity.ShowReadmeOnStart"
+			value="true" />
+		<property name="WebServerToolWindowFactoryState"
+			value="false" />
+		<property name="aspect.path.notification.shown" value="true" />
+		<property name="last_opened_file_path"
+			value="$PROJECT_DIR$/src/com/bluerabbit/librarysystem/dao/BookInfoUpdate.java" />
+		<property name="nodejs_package_manager_path" value="npm" />
+		<property name="project.structure.last.edited"
+			value="Problems" />
+		<property name="project.structure.proportion" value="0.0" />
+		<property name="project.structure.side.proportion"
+			value="0.2" />
+		<property name="settings.editor.selected.configurable"
+			value="SQL Resolution Scopes" />
+	</component>
+	<component name="RecentsManager">
+		<key name="CreateClassDialog.RecentsKey">
+			<recent name="com.bluerabbit.librarysystem.service.borrow" />
+			<recent name="com.bluerabbit.librarysystem.listener.borrow" />
+		</key>
+	</component>
+	<component name="RunManager">
+		<configuration name="BlueRabbitLibrarySystem"
+			type="Application" factoryName="Application" temporary="true"
+			nameIsGenerated="true">
+			<option name="MAIN_CLASS_NAME"
+				value="com.bluerabbit.librarysystem.BlueRabbitLibrarySystem" />
+			<module name="LibrarySystem" />
+			<extension name="coverage">
+				<pattern>
+					<option name="PATTERN"
+						value="com.bluerabbit.librarysystem.*" />
+					<option name="ENABLED" value="true" />
+				</pattern>
+			</extension>
+			<method v="2">
+				<option name="Make" enabled="true" />
+			</method>
+		</configuration>
+		<configuration default="true" type="ArquillianTestNG"
+			factoryName="" nameIsGenerated="true">
+			<option name="arquillianRunConfiguration">
+				<value>
+					<option name="containerStateName" value="" />
+				</value>
+			</option>
+			<option name="TEST_OBJECT" value="CLASS" />
+			<properties />
+			<listeners />
+			<method v="2">
+				<option name="Make" enabled="true" />
+			</method>
+		</configuration>
+		<recent_temporary>
+			<list>
+				<item itemvalue="应用程序.BlueRabbitLibrarySystem" />
+			</list>
+		</recent_temporary>
+	</component>
+	<component name="SpellCheckerSettings"
+		RuntimeDictionaries="0" Folders="0" CustomDictionaries="0"
+		DefaultDictionary="application-level" UseSingleDictionary="true"
+		transferred="true" />
+	<component name="TaskManager">
+		<task active="true" id="Default" summary="Default task">
+			<changelist id="29185e9b-4ec8-4285-b1f0-c352d2ed0f55"
+				name="Default Changelist" comment="" />
+			<created>1678258258162</created>
+			<option name="number" value="Default" />
+			<option name="presentableId" value="Default" />
+			<updated>1678258258162</updated>
+			<workItem from="1678258261101" duration="4342000" />
+			<workItem from="1678263081204" duration="85557000" />
+		</task>
+		<servers />
+	</component>
+	<component name="TypeScriptGeneratedFilesManager">
+		<option name="version" value="3" />
+	</component>
+	<component name="XDebuggerManager">
+		<breakpoint-manager>
+			<breakpoints>
+				<breakpoint enabled="true" type="java-exception">
+					<properties class="java.lang.NullPointerException"
+						package="java.lang" />
+					<option name="timeStamp" value="1" />
+				</breakpoint>
+			</breakpoints>
+		</breakpoint-manager>
+	</component>
+	<component name="XSLT-Support.FileAssociations.UIState">
+		<expand />
+		<select />
+	</component>
 </project>
