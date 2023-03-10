@@ -28,17 +28,17 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/com/bluerabbit/librarysystem/dao/BookInfoUpdate.java" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="SQL Resolution Scopes" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.bluerabbit.librarysystem.listener.borrow" />
       <recent name="com.bluerabbit.librarysystem.service.borrow" />
+      <recent name="com.bluerabbit.librarysystem.listener.borrow" />
     </key>
   </component>
   <component name="RunManager">
@@ -83,7 +83,7 @@
       <option name="presentableId" value="Default" />
       <updated>1678258258162</updated>
       <workItem from="1678258261101" duration="4342000" />
-      <workItem from="1678263081204" duration="59965000" />
+      <workItem from="1678263081204" duration="79181000" />
     </task>
     <servers />
   </component>

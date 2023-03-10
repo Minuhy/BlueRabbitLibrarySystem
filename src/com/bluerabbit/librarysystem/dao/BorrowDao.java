@@ -5,7 +5,6 @@ import com.bluerabbit.librarysystem.beans.BorrowBeans;
 import com.bluerabbit.librarysystem.beans.ReaderInfoBeans;
 import com.bluerabbit.librarysystem.database.DBUtil;
 
-import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,6 +17,7 @@ import java.util.List;
  * @date 2023/3/8 16:59
  */
 public class BorrowDao {
+    public final static int PAGE_MINI_SIZE = 5;
     public final static int PAGE_SIZE = 12;
 
     public List<BorrowBeans> getAllBorrow(String searchSql, String keyWord, int page, boolean isSearch) {
@@ -97,8 +97,8 @@ public class BorrowDao {
             if (rs != null) {
                 try {
                     rs.close();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
+                } catch (SQLException t) {
+                    t.printStackTrace();
                 }
             }
             DBUtil.free(statement, conn);
@@ -109,9 +109,9 @@ public class BorrowDao {
     /**
      * 获取总数据量
      *
-     * @param searchSql
-     * @param keyWord
-     * @param isSearch
+     * @param searchSql 搜索的SQL部分
+     * @param keyWord   关键词
+     * @param isSearch  是否是搜索
      * @return 总数据量，获取失败返回 0
      */
     public int getAllCount(String searchSql, String keyWord, boolean isSearch) {
@@ -156,8 +156,8 @@ public class BorrowDao {
             if (rs != null) {
                 try {
                     rs.close();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
+                } catch (SQLException t) {
+                    t.printStackTrace();
                 }
             }
             DBUtil.free(statement, conn);
@@ -706,6 +706,377 @@ public class BorrowDao {
             if (statement.executeUpdate() < 1) {
                 conn.rollback();
                 return "更新数据失败";
+            }
+
+            // 提交数据
+            conn.commit();
+
+        } catch (SQLException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException t) {
+                t.printStackTrace();
+                return "数据库错误：" + t.getMessage();
+            }
+            return "数据库错误：" + e.getMessage();
+        } finally {
+            try {
+                conn.setAutoCommit(true);
+            } catch (SQLException t) {
+                t.printStackTrace();
+            }
+            //一定要做的事，释放连接
+            DBUtil.free(statement, conn);
+        }
+        return null;
+    }
+
+    /**
+     * 查询一个读者所借的书籍
+     *
+     * @param readerId 读者ID
+     * @param keyword  书籍关键词，null为所有书籍
+     * @return 书籍数量
+     */
+    public int getBookCountBySearchAndReaderId(String readerId, String keyword) {
+        String sql = "SELECT " +
+                " count(*) AS 'count' " +
+                "FROM " +
+                " t_borrow AS borrow " +
+                " INNER JOIN " +
+                " books_info AS book " +
+                " ON  " +
+                "  borrow.book_id = book.BookID " +
+                " INNER JOIN " +
+                " administrator AS borrow_admin " +
+                " ON  " +
+                "  borrow.borrow_admin_id = borrow_admin.AdminID " +
+                "WHERE " +
+                " borrow.reader_id = ? ";
+
+        if (keyword != null) {
+            sql += " AND " +
+                    " ( " +
+                    "  book.BookName LIKE ? OR " +
+                    "  book.BookBarcode LIKE ? OR " +
+                    "  book.BookID LIKE ? OR " +
+                    "  book.Author LIKE ? OR " +
+                    "  book.Publisher LIKE ? OR " +
+                    "  CONVERT(DATE_FORMAT(book.PublishDate,'%Y-%m-%d'), CHAR) LIKE ? OR " +
+                    "  book.Stack LIKE ? OR " +
+                    "  book.BookShelf LIKE ? OR " +
+                    "  CONVERT(borrow_admin.AdminID, CHAR) LIKE ? OR " +
+                    "  borrow_admin.AdminName LIKE ? OR " +
+                    "  CONVERT(borrow.id, CHAR) LIKE ? OR " +
+                    "  CONVERT(FROM_UNIXTIME(borrow.create_timestamp/1000), CHAR) LIKE ? " +
+                    " ) ";
+        }
+
+        System.out.println(sql);
+
+        //获得数据库连接
+        Connection conn = DBUtil.getConn();
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        try {
+            //获得操作句柄
+            statement = conn.prepareStatement(sql);
+
+            // 插入数据
+            statement.setString(1, readerId);
+            if (keyword != null) {
+                for (int i = 0; i < 12; i++) {
+                    statement.setString(i + 2, keyword);
+                }
+            }
+
+            //根据SQL语句获取数据
+            rs = statement.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("count");
+            } else {
+                return 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            //一定要做的事，释放连接
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            DBUtil.free(statement, conn);
+        }
+        return 0;
+    }
+
+    /**
+     * 分页获取一个读者下的借的书，支持搜索
+     *
+     * @param keyword  搜索关键词
+     * @param readerId 读者ID
+     * @param page     页数，从1开始
+     * @return 一组借出数据
+     */
+    public List<BorrowBeans> getBookBySearchAndReaderId(String keyword, String readerId, int page) {
+
+        // 从1开始转换成从0开始
+        if (page > 0) {
+            page--;
+        }
+
+        String sql = "SELECT " +
+                " borrow.id AS borrow_id,  " + // 借出编号
+                " borrow.book_number AS borrow_number,  " + // 借出的数量
+                " FROM_UNIXTIME((`borrow`.`duration`+`borrow`.`create_timestamp`)/1000) AS will_back_timestamp,  " + // 预计归还时间
+                " FROM_UNIXTIME(`borrow`.`create_timestamp`/1000) AS borrow_time,  " + // 借出时间
+                " IF(borrow.return_timestamp=0,'未归还',FROM_UNIXTIME(borrow.return_timestamp/1000)) AS is_return,  " + // 归还时间
+                " borrow.borrow_admin_id AS borrow_admin,  " + // 借出管理员
+                " borrow.return_admin_id AS return_admin,  " + // 还入管理员
+                " book.BookName AS book_name,  " + // 借出书名
+                " book.BookBarcode AS book_isbn,  " + // 借出书的ISBN
+                " book.Author AS book_author,  " + // 借出书的作者
+                " book.Publisher AS book_publisher,  " + // 借出书的出版社
+                " book.Stack AS book_stack,  " + // 借出书的书室
+                " book.BookShelf AS book_shelf,  " + // 借出书的书架
+                " book.Price AS book_price,  " + // 借出书的价格
+                " book.BookID AS book_id,  " + // 借出书的编号
+                " borrow_admin.AdminName AS borrow_admin_name " + // 借出书的管理员昵称
+                "FROM " +
+                " t_borrow AS borrow " +
+                " INNER JOIN " +
+                " books_info AS book " +
+                " ON  " +
+                "  borrow.book_id = book.BookID " +
+                " INNER JOIN " +
+                " administrator AS borrow_admin " +
+                " ON  " +
+                "  borrow.borrow_admin_id = borrow_admin.AdminID " +
+                "WHERE " +
+                " borrow.reader_id = ? ";
+
+        if (keyword != null) {
+            sql += " AND " +
+                    " ( " +
+                    "  book.BookName LIKE ? OR " +
+                    "  book.BookBarcode LIKE ? OR " +
+                    "  book.BookID LIKE ? OR " +
+                    "  book.Author LIKE ? OR " +
+                    "  book.Publisher LIKE ? OR " +
+                    "  CONVERT(DATE_FORMAT(book.PublishDate,'%Y-%m-%d'), CHAR) LIKE ? OR " +
+                    "  book.Stack LIKE ? OR " +
+                    "  book.BookShelf LIKE ? OR " +
+                    "  CONVERT(borrow_admin.AdminID, CHAR) LIKE ? OR " +
+                    "  borrow_admin.AdminName LIKE ? OR " +
+                    "  CONVERT(borrow.id, CHAR) LIKE ? OR " +
+                    "  CONVERT(FROM_UNIXTIME(borrow.create_timestamp/1000), CHAR) LIKE ? " +
+                    " ) ";
+        }
+
+        sql += " ORDER BY " +
+                " is_return DESC,  " +
+                " borrow_time DESC " +
+                "LIMIT " + (page * PAGE_MINI_SIZE) + ", " + PAGE_MINI_SIZE;
+
+        //获得数据库连接
+        Connection conn = DBUtil.getConn();
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+
+        List<BorrowBeans> list = new ArrayList<>();
+        try {
+            //获得操作句柄
+            statement = conn.prepareStatement(sql);
+
+            // 插入数据
+            statement.setString(1, readerId);
+            if (keyword != null) {
+                for (int i = 0; i < 12; i++) {
+                    statement.setString(i + 2, keyword);
+                }
+            }
+
+            //根据SQL语句获取数据
+            rs = statement.executeQuery();
+            while (rs.next()) {
+                BorrowBeans beans = new BorrowBeans();
+                String id = rs.getString("borrow_id");
+                String createTimestamp = rs.getString("borrow_time");
+                String willBackTimestamp = rs.getString("will_back_timestamp");
+                String isReturn = rs.getString("is_return");
+                String borrowAdminId = rs.getString("borrow_admin");
+                String returnAdminId = rs.getString("return_admin");
+                String borrowAdminName = rs.getString("borrow_admin_name");
+                String bookName = rs.getString("book_name");
+                String bookBarcode = rs.getString("book_isbn");
+                String bookAuthor = rs.getString("book_author");
+                String bookPublisher = rs.getString("book_publisher");
+                String bookStack = rs.getString("book_stack");
+                String bookShelf = rs.getString("book_shelf");
+                String bookPrice = rs.getString("book_price");//价格
+                String bookId = rs.getString("book_id");
+                String bookNumber = rs.getString("borrow_number"); // 借出数量
+
+
+                beans.setId(id);
+                beans.setBookNumber(bookNumber);
+                beans.setCreateTimestamp(createTimestamp);
+                beans.setWillBackTimestamp(willBackTimestamp);
+                beans.setIsReturn(isReturn);
+                beans.setBorrowAdminId(borrowAdminId);
+                beans.setReturnAdminId(returnAdminId);
+                beans.setBorrowAdminName(borrowAdminName);
+
+                beans.setBookPrice(bookPrice);
+
+                beans.setBookName(bookName);
+                beans.setBookAuthor(bookAuthor);
+                beans.setBookPublisher(bookPublisher);
+                beans.setBookId(bookId);
+                beans.setBookBarcode(bookBarcode);
+                beans.setBookStack(bookStack);
+                beans.setBookShelf(bookShelf);
+                beans.setReaderId(readerId);
+                list.add(beans);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            //一定要做的事，释放连接
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            DBUtil.free(statement, conn);
+        }
+        return list;
+    }
+
+    /**
+     * 续借
+     * @param borrowId 借出编号
+     * @param duration 续借时长
+     * @param status 书籍状态
+     * @param adminID 操作员
+     * @param time 时间
+     * @return 成功为null，否则为错误信息
+     */
+    public String borrowRenew(String borrowId, String duration, String status, String adminID, String time) {
+        String sql = "UPDATE `t_borrow`  " +
+                "SET  " +
+                " `return_admin_id` = ?,  " +
+                " `duration` = `duration` + ?,  " +
+                " `status` = ?, " +
+                " `update_timestamp` = ?  " +
+                "WHERE `id` = ?";
+
+        //获得数据库连接
+        Connection conn = DBUtil.getConn();
+        //声明句柄对象
+        PreparedStatement statement = null;
+        try {
+
+            //获得操作句柄
+            statement = conn.prepareStatement(sql);
+            //拼接语句
+            statement.setString(1, adminID);
+            statement.setString(2, duration);
+            statement.setString(3, status);
+            statement.setString(4, time);
+            statement.setString(5, borrowId);
+
+            //执行语句
+            if (statement.executeUpdate() < 1) {
+                conn.rollback();
+                return "写入数据失败";
+            }
+
+        } catch (SQLException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException t) {
+                t.printStackTrace();
+                return "数据库错误：" + t.getMessage();
+            }
+            return "数据库错误：" + e.getMessage();
+        } finally {
+            //一定要做的事，释放连接
+            DBUtil.free(statement, conn);
+        }
+        return null;
+    }
+
+    /**
+     * 还入图书
+     * @param borrowId 借出编号
+     * @param pay 支付费用
+     * @param status 状态，如果是3则不添加到库存中
+     * @param adminID 管理员ID
+     * @param time 时间
+     * @param number 还入数量
+     * @param bookId 书ID
+     * @return 成功为null，否则为错误信息
+     */
+    public String borrowBack(String borrowId, String pay, String status, String adminID, String time, String number, String bookId) {
+        String sql = "UPDATE `t_borrow`  " +
+                "SET  " +
+                "`return_admin_id` = ?, " +
+                "`status` = ?,  " +
+                "`penalty` = ?,  " +
+                "`update_timestamp` = ?,  " +
+                "`return_timestamp` = ?  " +
+                "WHERE `id` = ? ";
+
+        //获得数据库连接
+        Connection conn = DBUtil.getConn();
+        //声明句柄对象
+        PreparedStatement statement = null;
+        try {
+            // 开启事务
+            conn.setAutoCommit(false);
+
+            //获得操作句柄
+            statement = conn.prepareStatement(sql);
+            //拼接语句
+            statement.setString(1, adminID);
+            statement.setString(2, status);
+            statement.setString(3, pay);
+            statement.setString(4, time);
+            statement.setString(5, time);
+            statement.setString(6, borrowId);
+
+            //执行语句
+            if (statement.executeUpdate() < 1) {
+                conn.rollback();
+                return "写入数据失败";
+            }
+            statement.close();
+
+            //--------------------------更新图书数据-----------------------------------
+
+            if(!"3".equals(status)) {
+                sql = "UPDATE " +
+                        "`books_info` " +
+                        "SET `Quantity` = `Quantity` + ? " +
+                        "WHERE `BookID` = ?";
+
+                statement = conn.prepareStatement(sql);
+                statement.setString(1, number);
+                statement.setString(2, bookId);
+
+                //执行语句
+                if (statement.executeUpdate() < 1) {
+                    conn.rollback();
+                    return "更新数据失败";
+                }
+            }else{
+                System.out.println("书籍已丢失");
             }
 
             // 提交数据
