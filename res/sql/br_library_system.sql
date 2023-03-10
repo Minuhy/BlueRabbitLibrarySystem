@@ -33,109 +33,109 @@ CREATE TABLE `administrator`  (
 -- ----------------------------
 -- Records of administrator
 -- ----------------------------
-INSERT INTO `administrator` VALUES (1, 'å°çŒ«', '10000', 'b7a782741f667201b54880c925faec4b', 1);
-INSERT INTO `administrator` VALUES (2, 'å°ç‹—', '10001', 'e10adc3949ba59abbe56e057f20f883e', 0);
-INSERT INTO `administrator` VALUES (3, 'å°å…”', '10002', '9103c8c82514f39d8360c7430c4ee557', 0);
-INSERT INTO `administrator` VALUES (4, 'å°é¼ ', '10003', 'f5dffc111454b227fbcdf36178dfe6ac', 0);
-INSERT INTO `administrator` VALUES (5, 'å°å¯', '10004', 'd783823cc6284b929c2cd8df2167d212', 0);
-INSERT INTO `administrator` VALUES (6, 'ç¬‘ç¬‘', '10005', '6eb887126d24e8f1cd8ad5033482c781', 0);
-INSERT INTO `administrator` VALUES (17, 'ç³ç³', '10017', '6eb887126d24e8f1cd8ad5033482c781', 0);
-INSERT INTO `administrator` VALUES (27, 'å°é±¼', '10027', '6eb887126d24e8f1cd8ad5033482c781', 0);
-INSERT INTO `administrator` VALUES (0, 'ç®¡ç†å‘˜', 'admin', 'd41d8cd98f00b204e9800998ecf8427e', 1);
+INSERT INTO `administrator` VALUES (1, 'Ð¡Ã¨', '10000', 'b7a782741f667201b54880c925faec4b', 1);
+INSERT INTO `administrator` VALUES (2, 'Ð¡¹·', '10001', 'e10adc3949ba59abbe56e057f20f883e', 0);
+INSERT INTO `administrator` VALUES (3, 'Ð¡ÍÃ', '10002', '9103c8c82514f39d8360c7430c4ee557', 0);
+INSERT INTO `administrator` VALUES (4, 'Ð¡Êó', '10003', 'f5dffc111454b227fbcdf36178dfe6ac', 0);
+INSERT INTO `administrator` VALUES (5, 'Ð¡¿É', '10004', 'd783823cc6284b929c2cd8df2167d212', 0);
+INSERT INTO `administrator` VALUES (6, 'Ð¦Ð¦', '10005', '6eb887126d24e8f1cd8ad5033482c781', 0);
+INSERT INTO `administrator` VALUES (17, 'ÁÕÁÕ', '10017', '6eb887126d24e8f1cd8ad5033482c781', 0);
+INSERT INTO `administrator` VALUES (27, 'Ð¡Óã', '10027', '6eb887126d24e8f1cd8ad5033482c781', 0);
+INSERT INTO `administrator` VALUES (0, '¹ÜÀíÔ±', 'admin', 'd41d8cd98f00b204e9800998ecf8427e', 1);
 
 -- ----------------------------
 -- Table structure for books_info
 -- ----------------------------
 DROP TABLE IF EXISTS `books_info`;
 CREATE TABLE `books_info`  (
-  `BookName` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'ä¹¦å',
-  `SumQuantity` int(11) UNSIGNED NOT NULL COMMENT 'æ€»å†Œæ•°',
-  `Quantity` int(11) UNSIGNED NOT NULL COMMENT 'å‰©ä½™å†Œæ•°',
-  `LendTime` int(11) UNSIGNED NOT NULL COMMENT 'å€Ÿå‡ºæ¬¡æ•°',
-  `BookID` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'ä¹¦åˆŠç¼–å·',
-  `BookBarcode` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'ä¹¦åˆŠæ¡ç ',
-  `BookClassify` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'ä¹¦åˆŠåˆ†ç±»',
-  `BookThem` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'ä¸»é¢˜è¯',
-  `Author` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'ä½œè€…',
-  `Publisher` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'å‡ºç‰ˆç¤¾',
-  `PublishTime` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'å‡ºç‰ˆç‰ˆæ¬¡',
-  `PublishDate` date NULL DEFAULT NULL COMMENT 'å‡ºç‰ˆæ—¥æœŸ',
-  `BookType` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'é¦†è—åˆ†ç±»',
-  `Stack` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'æ‰€åœ¨ä¹¦å®¤',
-  `BookShelf` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'æ‰€åœ¨ä¹¦æž¶',
-  `Price` float NULL DEFAULT NULL COMMENT 'ä»·æ ¼',
-  `ContentText` varchar(300) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'ç®€ä»‹',
-  `Remark` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'å¤‡æ³¨',
-  `BookPage` int(11) NULL DEFAULT NULL COMMENT 'é¡µæ•°',
-  `WordsNumber` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'å­—æ•°',
+  `BookName` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'ÊéÃû',
+  `SumQuantity` int(11) UNSIGNED NOT NULL COMMENT '×Ü²áÊý',
+  `Quantity` int(11) UNSIGNED NOT NULL COMMENT 'Ê£Óà²áÊý',
+  `LendTime` int(11) UNSIGNED NOT NULL COMMENT '½è³ö´ÎÊý',
+  `BookID` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Êé¿¯±àºÅ',
+  `BookBarcode` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Êé¿¯ÌõÂë',
+  `BookClassify` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Êé¿¯·ÖÀà',
+  `BookThem` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Ö÷Ìâ´Ê',
+  `Author` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '×÷Õß',
+  `Publisher` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '³ö°æÉç',
+  `PublishTime` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '³ö°æ°æ´Î',
+  `PublishDate` date NULL DEFAULT NULL COMMENT '³ö°æÈÕÆÚ',
+  `BookType` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '¹Ý²Ø·ÖÀà',
+  `Stack` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'ËùÔÚÊéÊÒ',
+  `BookShelf` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'ËùÔÚÊé¼Ü',
+  `Price` float NULL DEFAULT NULL COMMENT '¼Û¸ñ',
+  `ContentText` varchar(300) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '¼ò½é',
+  `Remark` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '±¸×¢',
+  `BookPage` int(11) NULL DEFAULT NULL COMMENT 'Ò³Êý',
+  `WordsNumber` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '×ÖÊý',
   PRIMARY KEY (`BookID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'å›¾ä¹¦ä¿¡æ¯è¡¨' ROW_FORMAT = Compact;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'Í¼ÊéÐÅÏ¢±í' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of books_info
 -- ----------------------------
-INSERT INTO `books_info` VALUES ('æ¯›æ³½ä¸œæ€æƒ³å’Œä¸­å›½ç‰¹è‰²ç¤¾ä¼šä¸»ä¹‰ç†è®ºä½“ç³»æ¦‚è®º', 5, 1, 7, '00001', '9787040494815', 'æ€æƒ³ã€ç†è®ºã€åŽ†å²', 'æ¯›æ³½ä¸œã€ä¸­å›½ç‰¹è‰²ç¤¾ä¼šä¸»ä¹‰', 'é«˜è‹±', 'é«˜ç­‰æ•™è‚²å‡ºç‰ˆç¤¾', 'ç¬¬6ç‰ˆ', '2018-09-01', 'å›¾ä¹¦', 'ç¬¬ä¸€ä¹¦å®¤', 'ç¬¬ä¸€ä¹¦æž¶', 25, 'ä¸­å›½ç‰¹è‰²ç¤¾ä¼šä¸»ä¹‰çš„åŽ†å²', 'å¤§äºŒæ•™ç§‘ä¹¦', 313, '260åƒå­—');
-INSERT INTO `books_info` VALUES ('æµ®ç”Ÿç‰©è¯­', 17, 0, 30, '000010', '9367566799036', 'å°è¯´', 'æž¶ç©ºã€çŽ„å¹»', 'è£Ÿæ¤¤åŒæ ‘', 'ä¸Šæµ·äº¤é€šå‡ºç‰ˆç¤¾', 'ç¬¬5ç‰ˆ', '2018-08-16', 'å›¾ä¹¦', 'ç¬¬äº”ä¹¦å®¤', 'ç¬¬å››ä¹¦æž¶', 29.99, 'è½»å¿«å¹½é»˜çš„å¦–æ€ªåŽ†é™©è®°', 'æ„ŸåŠ¨ã€å¹»æƒ³ã€æå‡ç”Ÿæ´»ä¹è¶£', 487, '393åƒå­—');
-INSERT INTO `books_info` VALUES ('æ„æž—2018å¹´åˆè®¢æœ¬', 90, 52, 68, '00002', '9771007384158', 'æ‚å¿—ã€ä½œæ–‡ã€é’æ˜¥æ–‡å­¦', 'ä½œæ–‡ï¼Œå°å°å§', 'é«˜è‹±', 'æ„æž—æ‚å¿—ç¤¾', 'ç¬¬1ç‰ˆ', '2019-01-01', 'æœŸåˆŠ', 'ç¬¬ä¸‰ä¹¦å®¤', 'ç¬¬äºŒä¹¦æž¶', 29.8, 'æœ‰åŠ©äºŽä¸­å­¦ç”Ÿä½œæ–‡æé«˜ï¼Œè§£å†³ä¸­å­¦ç”Ÿçƒ¦æ¼çš„æœŸåˆŠ', 'æœŸåˆŠåˆè®¢æœ¬', 744, '540åƒå­—');
-INSERT INTO `books_info` VALUES ('æ–°ç¼–åˆ‘æ³•ç½ªåé€‚ç”¨æŒ‡å—', 8, 7, 12, '00003', '9771557384236', 'æ³•å¾‹', 'åˆ‘æ³• ç½ªå æ³•å¾‹', 'ç†Šé€‰å›½', 'äººæ°‘æ³•é™¢å‡ºç‰ˆ', 'ç¬¬1ç‰ˆ', '2017-05-01', 'æœŸåˆŠ', 'ç¬¬ä¸‰ä¹¦å®¤', 'ç¬¬äºŒä¹¦æž¶', 9.8, 'æ³•å¾‹åˆ‘æ³•çš„äº†è§£', 'æœŸåˆŠåˆè®¢æœ¬', 264, '54åƒå­—');
-INSERT INTO `books_info` VALUES ('c++ç¨‹åºè®¾è®¡(ç‰¹åˆ«ç‰ˆ)', 4, 2, 13, '00004', '9559338384236', 'è‡ªåŠ¨åŒ–æŠ€æœ¯ã€è®¡ç®—æœºæŠ€æœ¯', ' c++ ç¨‹åºè®¾è®¡ è½¯ä»¶å·¥ç¨‹', 'Special', 'äººæ°‘äº¤é€šå‡ºç‰ˆç¤¾', 'ç¬¬2ç‰ˆ', '2018-09-03', 'å›¾ä¹¦', 'ç¬¬å››ä¹¦å®¤', 'ç¬¬ä¸€ä¹¦æž¶', 34.6, 'C++è¯­è¨€çš„äº†è§£ä¸ŽæŽŒæ¡', 'å¤§ä¸€æ•™ç§‘ä¹¦', 504, '344åƒå­—');
-INSERT INTO `books_info` VALUES ('è‹±è¯­ä¸“ä¸šå››çº§å¤‡è€ƒ', 15, 3, 26, '00005', '9534457984236', 'ç¾Žæ´²è¯¸è¯­è¨€', 'å››çº§ è‹±è¯­', 'ç››è§', 'åœ°è´¨å‡ºç‰ˆç¤¾', 'ç¬¬5ç‰ˆ', '2019-02-23', 'å›¾ä¹¦', 'ç¬¬å››ä¹¦å®¤', 'ç¬¬ä¸‰ä¹¦æž¶', 26, 'å¤‡è€ƒå››çº§', 'å¤§å­¦è‹±è¯­å››çº§è€ƒè¯•æç‚¼', 198, '194åƒå­—');
-INSERT INTO `books_info` VALUES ('å¤–å›½æ³•å¾‹å²ç ”ç©¶', 10, 7, 9, '00006', '7715534569036', 'æ³•å¾‹', 'åˆ‘æ³• ç½ªå æ³•å¾‹', 'ä½•å‹¤åŽ', 'ä¸­å›½æ”¿æ³•å¤§å­¦å‡ºç‰ˆç¤¾', 'ç¬¬3ç‰ˆ', '2018-09-01', 'å›¾ä¹¦', 'ç¬¬ä¸‰ä¹¦å®¤', 'ç¬¬äºŒä¹¦æž¶', 30.8, 'æ³•å¾‹åˆ‘æ³•çš„äº†è§£', 'æ³•å¾‹åˆ‘æ³•çš„äº†è§£', 334, '670åƒå­—');
-INSERT INTO `books_info` VALUES ('ç¼–ç¨‹é»‘é©¬çœŸè¨€', 13, 7, 10, '00007', '4563552169036', 'è‡ªåŠ¨åŒ–æŠ€æœ¯ã€è®¡ç®—æœºæŠ€æœ¯', 'è½¯ä»¶å·¥å…·ã€å·¥å…·è½¯ä»¶', 'çŽ‹è½¶ç”·', 'äººæ°‘äº¤é€šå‡ºç‰ˆç¤¾', 'ç¬¬1ç‰ˆ', '2018-04-24', 'å›¾ä¹¦', 'ç¬¬å››ä¹¦å®¤', 'ç¬¬äºŒä¹¦æž¶', 35, 'è®¡ç®—æœºè¯­è¨€çš„å‘å±•åŽ†ç¨‹', 'ç¼–ç¨‹è¯­è¨€çš„æ‹“å±•', 264, '145åƒå­—');
-INSERT INTO `books_info` VALUES ('é»˜è¯»', 13, 0, 25, '00008', '2453466799036', 'å°è¯´', 'åˆ‘ä¾¦ çŠ¯ç½ª', 'priest', 'äººæ°‘äº¤é€šå‡ºç‰ˆç¤¾', 'ç¬¬1ç‰ˆ', '2018-05-16', 'å›¾ä¹¦', 'ç¬¬äº”ä¹¦å®¤', 'ç¬¬ä¸‰ä¹¦æž¶', 36.8, 'æ•‘èµŽï¼Œçƒ§è„‘ï¼Œç ´æ¡ˆ', 'æå‡æŽ¨ç†èƒ½åŠ›', 564, '445åƒå­—');
-INSERT INTO `books_info` VALUES ('æ¯›æ³½ä¸œç†è®ºæ¦‚è¿°', 9, 2, 7, '00009', '4652377494815', 'æ€æƒ³ã€ç†è®ºã€åŽ†å²', 'æ¯›æ³½ä¸œã€æ¯›æ³½ä¸œç†è®ºã€ä¸­å›½ç‰¹è‰²ç¤¾ä¼šä¸»ä¹‰', 'æ•™è‚²éƒ¨ç¤¾ä¼šç§‘å­¦ç ”ç©¶æ‰€', 'é«˜ç­‰æ•™è‚²å‡ºç‰ˆç¤¾', 'ç¬¬7ç‰ˆ', '2019-04-11', 'å›¾ä¹¦', 'ç¬¬ä¸€ä¹¦å®¤', 'ç¬¬ä¸€ä¹¦æž¶', 32, 'ä¸­å›½ç‰¹è‰²ç¤¾ä¼šä¸»ä¹‰çš„åŽ†å²ã€æ¯›æ³½ä¸œç†è®ºçš„å‘å±•åŽ†ç¨‹', 'æ¯›æ³½ä¸œç†è®º', 453, '540åƒå­—');
-INSERT INTO `books_info` VALUES ('è€ƒç ”æ•°å­¦é«˜ç­‰æ•°å­¦è¾…å¯¼è®²ä¹‰Â·åŸºç¡€ç¯‡', 12, 12, 0, '00011', '9787576404319', 'è€ƒç ”', 'è®²ä¹‰ã€é«˜æ•°ã€æ•°å­¦', 'æ±¤å®¶å‡¤', 'ä¸­å›½æ”¿æ³•å¤§å­¦å‡ºç‰ˆç¤¾', 'ç¬¬1ç‰ˆ', '2023-03-08', 'å›¾ä¹¦', 'ç¬¬ä¸€ä¹¦å®¤', 'ç¬¬äºŒä¹¦æž¶', 68, 'ä¸€æœ¬å—å¤§å­¦ç”Ÿå–œæ¬¢çš„è€ƒç ”é«˜æ•°è¾…å¯¼ä¹¦ã€‚', 'æ— ', 126, '205åƒå­—');
-INSERT INTO `books_info` VALUES ('æ¯›æ³½ä¸œæ€æƒ³å’Œä¸­å›½ç‰¹è‰²ç¤¾ä¼šä¸»ä¹‰ç†è®ºä½“ç³»æ¦‚è®º', 5, 2, 5, '00071', '9787040494815', 'æ€æƒ³ã€ç†è®ºã€åŽ†å²', 'æ¯›æ³½ä¸œã€ä¸­å›½ç‰¹è‰²ç¤¾ä¼šä¸»ä¹‰', 'é«˜è‹±', 'é«˜ç­‰æ•™è‚²å‡ºç‰ˆç¤¾', 'ç¬¬6ç‰ˆ', '2018-09-01', 'å›¾ä¹¦', 'ç¬¬ä¸€ä¹¦å®¤', 'ç¬¬ä¸€ä¹¦æž¶', 25, 'ä¸­å›½ç‰¹è‰²ç¤¾ä¼šä¸»ä¹‰çš„åŽ†å²', 'å¤§äºŒæ•™ç§‘ä¹¦', 313, '260åƒå­—');
-INSERT INTO `books_info` VALUES ('æ„æž—2018å¹´åˆè®¢æœ¬', 90, 20, 27, '00702', '9771007384158', 'æ‚å¿—ã€ä½œæ–‡ã€é’æ˜¥æ–‡å­¦', 'ä½œæ–‡ï¼Œå°å°å§', 'é«˜è‹±', 'æ„æž—æ‚å¿—ç¤¾', 'ç¬¬1ç‰ˆ', '2019-01-01', 'æœŸåˆŠ', 'ç¬¬ä¸‰ä¹¦å®¤', 'ç¬¬äºŒä¹¦æž¶', 29.8, 'æœ‰åŠ©äºŽä¸­å­¦ç”Ÿä½œæ–‡æé«˜ï¼Œè§£å†³ä¸­å­¦ç”Ÿçƒ¦æ¼çš„æœŸåˆŠ', 'æœŸåˆŠåˆè®¢æœ¬', 744, '540åƒå­—');
+INSERT INTO `books_info` VALUES ('Ã«Ôó¶«Ë¼ÏëºÍÖÐ¹úÌØÉ«Éç»áÖ÷ÒåÀíÂÛÌåÏµ¸ÅÂÛ', 5, 1, 7, '00001', '9787040494815', 'Ë¼Ïë¡¢ÀíÂÛ¡¢ÀúÊ·', 'Ã«Ôó¶«¡¢ÖÐ¹úÌØÉ«Éç»áÖ÷Òå', '¸ßÓ¢', '¸ßµÈ½ÌÓý³ö°æÉç', 'µÚ6°æ', '2018-09-01', 'Í¼Êé', 'µÚÒ»ÊéÊÒ', 'µÚÒ»Êé¼Ü', 25, 'ÖÐ¹úÌØÉ«Éç»áÖ÷ÒåµÄÀúÊ·', '´ó¶þ½Ì¿ÆÊé', 313, '260Ç§×Ö');
+INSERT INTO `books_info` VALUES ('¸¡ÉúÎïÓï', 17, 0, 30, '000010', '9367566799036', 'Ð¡Ëµ', '¼Ü¿Õ¡¢Ðþ»Ã', 'ôÄé¡Ë«Ê÷', 'ÉÏº£½»Í¨³ö°æÉç', 'µÚ5°æ', '2018-08-16', 'Í¼Êé', 'µÚÎåÊéÊÒ', 'µÚËÄÊé¼Ü', 29.99, 'Çá¿ìÓÄÄ¬µÄÑý¹ÖÀúÏÕ¼Ç', '¸Ð¶¯¡¢»ÃÏë¡¢ÌáÉýÉú»îÀÖÈ¤', 487, '393Ç§×Ö');
+INSERT INTO `books_info` VALUES ('ÒâÁÖ2018ÄêºÏ¶©±¾', 90, 52, 68, '00002', '9771007384158', 'ÔÓÖ¾¡¢×÷ÎÄ¡¢Çà´ºÎÄÑ§', '×÷ÎÄ£¬Ð¡Ð¡½ã', '¸ßÓ¢', 'ÒâÁÖÔÓÖ¾Éç', 'µÚ1°æ', '2019-01-01', 'ÆÚ¿¯', 'µÚÈýÊéÊÒ', 'µÚ¶þÊé¼Ü', 29.8, 'ÓÐÖúÓÚÖÐÑ§Éú×÷ÎÄÌá¸ß£¬½â¾öÖÐÑ§Éú·³ÄÕµÄÆÚ¿¯', 'ÆÚ¿¯ºÏ¶©±¾', 744, '540Ç§×Ö');
+INSERT INTO `books_info` VALUES ('ÐÂ±àÐÌ·¨×ïÃûÊÊÓÃÖ¸ÄÏ', 8, 7, 12, '00003', '9771557384236', '·¨ÂÉ', 'ÐÌ·¨ ×ïÃû ·¨ÂÉ', 'ÐÜÑ¡¹ú', 'ÈËÃñ·¨Ôº³ö°æ', 'µÚ1°æ', '2017-05-01', 'ÆÚ¿¯', 'µÚÈýÊéÊÒ', 'µÚ¶þÊé¼Ü', 9.8, '·¨ÂÉÐÌ·¨µÄÁË½â', 'ÆÚ¿¯ºÏ¶©±¾', 264, '54Ç§×Ö');
+INSERT INTO `books_info` VALUES ('c++³ÌÐòÉè¼Æ(ÌØ±ð°æ)', 4, 2, 13, '00004', '9559338384236', '×Ô¶¯»¯¼¼Êõ¡¢¼ÆËã»ú¼¼Êõ', ' c++ ³ÌÐòÉè¼Æ Èí¼þ¹¤³Ì', 'Special', 'ÈËÃñ½»Í¨³ö°æÉç', 'µÚ2°æ', '2018-09-03', 'Í¼Êé', 'µÚËÄÊéÊÒ', 'µÚÒ»Êé¼Ü', 34.6, 'C++ÓïÑÔµÄÁË½âÓëÕÆÎÕ', '´óÒ»½Ì¿ÆÊé', 504, '344Ç§×Ö');
+INSERT INTO `books_info` VALUES ('Ó¢Óï×¨ÒµËÄ¼¶±¸¿¼', 15, 3, 26, '00005', '9534457984236', 'ÃÀÖÞÖîÓïÑÔ', 'ËÄ¼¶ Ó¢Óï', 'Ê¢Ïô', 'µØÖÊ³ö°æÉç', 'µÚ5°æ', '2019-02-23', 'Í¼Êé', 'µÚËÄÊéÊÒ', 'µÚÈýÊé¼Ü', 26, '±¸¿¼ËÄ¼¶', '´óÑ§Ó¢ÓïËÄ¼¶¿¼ÊÔÌáÁ¶', 198, '194Ç§×Ö');
+INSERT INTO `books_info` VALUES ('Íâ¹ú·¨ÂÉÊ·ÑÐ¾¿', 10, 7, 9, '00006', '7715534569036', '·¨ÂÉ', 'ÐÌ·¨ ×ïÃû ·¨ÂÉ', 'ºÎÇÚ»ª', 'ÖÐ¹úÕþ·¨´óÑ§³ö°æÉç', 'µÚ3°æ', '2018-09-01', 'Í¼Êé', 'µÚÈýÊéÊÒ', 'µÚ¶þÊé¼Ü', 30.8, '·¨ÂÉÐÌ·¨µÄÁË½â', '·¨ÂÉÐÌ·¨µÄÁË½â', 334, '670Ç§×Ö');
+INSERT INTO `books_info` VALUES ('±à³ÌºÚÂíÕæÑÔ', 13, 7, 10, '00007', '4563552169036', '×Ô¶¯»¯¼¼Êõ¡¢¼ÆËã»ú¼¼Êõ', 'Èí¼þ¹¤¾ß¡¢¹¤¾ßÈí¼þ', 'ÍõéóÄÐ', 'ÈËÃñ½»Í¨³ö°æÉç', 'µÚ1°æ', '2018-04-24', 'Í¼Êé', 'µÚËÄÊéÊÒ', 'µÚ¶þÊé¼Ü', 35, '¼ÆËã»úÓïÑÔµÄ·¢Õ¹Àú³Ì', '±à³ÌÓïÑÔµÄÍØÕ¹', 264, '145Ç§×Ö');
+INSERT INTO `books_info` VALUES ('Ä¬¶Á', 13, 0, 25, '00008', '2453466799036', 'Ð¡Ëµ', 'ÐÌÕì ·¸×ï', 'priest', 'ÈËÃñ½»Í¨³ö°æÉç', 'µÚ1°æ', '2018-05-16', 'Í¼Êé', 'µÚÎåÊéÊÒ', 'µÚÈýÊé¼Ü', 36.8, '¾ÈÊê£¬ÉÕÄÔ£¬ÆÆ°¸', 'ÌáÉýÍÆÀíÄÜÁ¦', 564, '445Ç§×Ö');
+INSERT INTO `books_info` VALUES ('Ã«Ôó¶«ÀíÂÛ¸ÅÊö', 9, 2, 7, '00009', '4652377494815', 'Ë¼Ïë¡¢ÀíÂÛ¡¢ÀúÊ·', 'Ã«Ôó¶«¡¢Ã«Ôó¶«ÀíÂÛ¡¢ÖÐ¹úÌØÉ«Éç»áÖ÷Òå', '½ÌÓý²¿Éç»á¿ÆÑ§ÑÐ¾¿Ëù', '¸ßµÈ½ÌÓý³ö°æÉç', 'µÚ7°æ', '2019-04-11', 'Í¼Êé', 'µÚÒ»ÊéÊÒ', 'µÚÒ»Êé¼Ü', 32, 'ÖÐ¹úÌØÉ«Éç»áÖ÷ÒåµÄÀúÊ·¡¢Ã«Ôó¶«ÀíÂÛµÄ·¢Õ¹Àú³Ì', 'Ã«Ôó¶«ÀíÂÛ', 453, '540Ç§×Ö');
+INSERT INTO `books_info` VALUES ('¿¼ÑÐÊýÑ§¸ßµÈÊýÑ§¸¨µ¼½²Òå¡¤»ù´¡Æª', 12, 12, 0, '00011', '9787576404319', '¿¼ÑÐ', '½²Òå¡¢¸ßÊý¡¢ÊýÑ§', 'ÌÀ¼Ò·ï', 'ÖÐ¹úÕþ·¨´óÑ§³ö°æÉç', 'µÚ1°æ', '2023-03-08', 'Í¼Êé', 'µÚÒ»ÊéÊÒ', 'µÚ¶þÊé¼Ü', 68, 'Ò»±¾ÊÜ´óÑ§ÉúÏ²»¶µÄ¿¼ÑÐ¸ßÊý¸¨µ¼Êé¡£', 'ÎÞ', 126, '205Ç§×Ö');
+INSERT INTO `books_info` VALUES ('Ã«Ôó¶«Ë¼ÏëºÍÖÐ¹úÌØÉ«Éç»áÖ÷ÒåÀíÂÛÌåÏµ¸ÅÂÛ', 5, 2, 5, '00071', '9787040494815', 'Ë¼Ïë¡¢ÀíÂÛ¡¢ÀúÊ·', 'Ã«Ôó¶«¡¢ÖÐ¹úÌØÉ«Éç»áÖ÷Òå', '¸ßÓ¢', '¸ßµÈ½ÌÓý³ö°æÉç', 'µÚ6°æ', '2018-09-01', 'Í¼Êé', 'µÚÒ»ÊéÊÒ', 'µÚÒ»Êé¼Ü', 25, 'ÖÐ¹úÌØÉ«Éç»áÖ÷ÒåµÄÀúÊ·', '´ó¶þ½Ì¿ÆÊé', 313, '260Ç§×Ö');
+INSERT INTO `books_info` VALUES ('ÒâÁÖ2018ÄêºÏ¶©±¾', 90, 20, 27, '00702', '9771007384158', 'ÔÓÖ¾¡¢×÷ÎÄ¡¢Çà´ºÎÄÑ§', '×÷ÎÄ£¬Ð¡Ð¡½ã', '¸ßÓ¢', 'ÒâÁÖÔÓÖ¾Éç', 'µÚ1°æ', '2019-01-01', 'ÆÚ¿¯', 'µÚÈýÊéÊÒ', 'µÚ¶þÊé¼Ü', 29.8, 'ÓÐÖúÓÚÖÐÑ§Éú×÷ÎÄÌá¸ß£¬½â¾öÖÐÑ§Éú·³ÄÕµÄÆÚ¿¯', 'ÆÚ¿¯ºÏ¶©±¾', 744, '540Ç§×Ö');
 
 -- ----------------------------
 -- Table structure for reader
 -- ----------------------------
 DROP TABLE IF EXISTS `reader`;
 CREATE TABLE `reader`  (
-  `ReaderID` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'å­¦å·',
-  `ReaderName` char(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'å§“å',
-  `Apart` char(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'å­¦é™¢',
-  `Sex` char(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'ç”·',
-  `Class` char(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'ç­çº§',
-  `TelNo` char(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'ç”µè¯',
+  `ReaderID` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Ñ§ºÅ',
+  `ReaderName` char(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'ÐÕÃû',
+  `Apart` char(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Ñ§Ôº',
+  `Sex` char(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'ÄÐ',
+  `Class` char(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '°à¼¶',
+  `TelNo` char(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'µç»°',
   PRIMARY KEY (`ReaderID`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of reader
 -- ----------------------------
-INSERT INTO `reader` VALUES ('5056', 'ç”°ç”°', 'ä¿¡æ¯å­¦é™¢', 'ç”·', '6233', '00000011');
-INSERT INTO `reader` VALUES ('5156', 'å¤šå¤š', 'ä½“è‚²å­¦é™¢', 'ç”·', '6345', '00000012');
-INSERT INTO `reader` VALUES ('5256', 'ç³–ç³–', 'å¤–å›½è¯­å­¦é™¢', 'å¥³', '6453', '00000013');
-INSERT INTO `reader` VALUES ('5356', 'æ‚ æ‚ ', 'éŸ³ä¹èˆžè¹ˆå­¦é™¢', 'ç”·', '6571', '00000014');
-INSERT INTO `reader` VALUES ('5456', 'ä¸œä¸œ', 'ç¾Žæœ¯ä¸Žè®¾è®¡å­¦é™¢', 'å¥³', '6655', '00000015');
-INSERT INTO `reader` VALUES ('5556', 'æ—ºæ—º', 'ä¿¡æ¯å­¦é™¢', 'å¥³', '6259', '00000016');
-INSERT INTO `reader` VALUES ('5656', 'é’é’', 'æ³•å­¦é™¢', 'ç”·', '6782', '00000017');
-INSERT INTO `reader` VALUES ('5756', 'è²è²', 'æ•™è‚²å­¦é™¢', 'å¥³', '6890', '00000018');
-INSERT INTO `reader` VALUES ('5856', 'å‰å‰', 'æ–‡å­¦é™¢', 'å¥³', '6934', '00000019');
-INSERT INTO `reader` VALUES ('5956', 'æ™¨æ™¨', 'å•†å­¦é™¢', 'ç”·', '6075', '00000020');
-INSERT INTO `reader` VALUES ('5966', 'è´è´', 'æ•°å­¦ä¸Žé‡‘èžé™¢', 'ç”·', '6137', '00000021');
-INSERT INTO `reader` VALUES ('5976', 'ä¹ä¹', 'é©¬å…‹æ€ä¸»ä¹‰å­¦é™¢', 'å¥³', '6953', '00000022');
-INSERT INTO `reader` VALUES ('5986', 'ç›¼ç›¼', 'ä½“è‚²å­¦é™¢', 'ç”·', '6370', '00000023');
+INSERT INTO `reader` VALUES ('5056', 'ÌïÌï', 'ÐÅÏ¢Ñ§Ôº', 'ÄÐ', '6233', '00000011');
+INSERT INTO `reader` VALUES ('5156', '¶à¶à', 'ÌåÓýÑ§Ôº', 'ÄÐ', '6345', '00000012');
+INSERT INTO `reader` VALUES ('5256', 'ÌÇÌÇ', 'Íâ¹úÓïÑ§Ôº', 'Å®', '6453', '00000013');
+INSERT INTO `reader` VALUES ('5356', 'ÓÆÓÆ', 'ÒôÀÖÎèµ¸Ñ§Ôº', 'ÄÐ', '6571', '00000014');
+INSERT INTO `reader` VALUES ('5456', '¶«¶«', 'ÃÀÊõÓëÉè¼ÆÑ§Ôº', 'Å®', '6655', '00000015');
+INSERT INTO `reader` VALUES ('5556', 'ÍúÍú', 'ÐÅÏ¢Ñ§Ôº', 'Å®', '6259', '00000016');
+INSERT INTO `reader` VALUES ('5656', 'ÇàÇà', '·¨Ñ§Ôº', 'ÄÐ', '6782', '00000017');
+INSERT INTO `reader` VALUES ('5756', '·Æ·Æ', '½ÌÓýÑ§Ôº', 'Å®', '6890', '00000018');
+INSERT INTO `reader` VALUES ('5856', '¼ª¼ª', 'ÎÄÑ§Ôº', 'Å®', '6934', '00000019');
+INSERT INTO `reader` VALUES ('5956', '³¿³¿', 'ÉÌÑ§Ôº', 'ÄÐ', '6075', '00000020');
+INSERT INTO `reader` VALUES ('5966', '±´±´', 'ÊýÑ§Óë½ðÈÚÔº', 'ÄÐ', '6137', '00000021');
+INSERT INTO `reader` VALUES ('5976', 'ÀÖÀÖ', 'Âí¿ËË¼Ö÷ÒåÑ§Ôº', 'Å®', '6953', '00000022');
+INSERT INTO `reader` VALUES ('5986', 'ÅÎÅÎ', 'ÌåÓýÑ§Ôº', 'ÄÐ', '6370', '00000023');
 
 -- ----------------------------
 -- Table structure for t_borrow
 -- ----------------------------
 DROP TABLE IF EXISTS `t_borrow`;
 CREATE TABLE `t_borrow`  (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'å€Ÿé˜…ID',
-  `reader_id` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'è¯»è€…ID',
-  `book_id` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'ä¹¦ID',
-  `borrow_admin_id` int(11) NOT NULL COMMENT 'å€Ÿå‡ºæ“ä½œè€…',
-  `return_admin_id` int(11) NULL DEFAULT NULL COMMENT 'å½’è¿˜æ“ä½œè€…',
-  `book_number` int(10) UNSIGNED NOT NULL DEFAULT 1 COMMENT 'å€Ÿå‡ºæ•°é‡',
-  `duration` bigint(20) UNSIGNED NOT NULL COMMENT 'å€Ÿå‡ºæ—¶é•¿ï¼Œå€Ÿé˜…æ—¶é—´åŠ è¿™ä¸ªå°±æ˜¯åº”è¯¥è¦å½’è¿˜çš„æ—¶é—´',
-  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'å›¾ä¹¦çŠ¶æ€ï¼š0æ­£å¸¸ï¼Œ1ç ´ç¢Žï¼Œ2ç ´æŸä¸¥é‡ï¼Œ3ä¸¢å¤±',
-  `penalty` float(10, 0) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'ç½šé‡‘',
-  `create_timestamp` bigint(20) UNSIGNED NOT NULL COMMENT 'å€Ÿé˜…æ—¶é—´',
-  `update_timestamp` bigint(20) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'ä¿®æ”¹æ—¶é—´',
-  `return_timestamp` bigint(20) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'å½’è¿˜æ—¶é—´ï¼Œ0è¡¨ç¤ºæœªå½’è¿˜',
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '½èÔÄID',
+  `reader_id` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '¶ÁÕßID',
+  `book_id` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'ÊéID',
+  `borrow_admin_id` int(11) NOT NULL COMMENT '½è³ö²Ù×÷Õß',
+  `return_admin_id` int(11) NULL DEFAULT NULL COMMENT '¹é»¹²Ù×÷Õß',
+  `book_number` int(10) UNSIGNED NOT NULL DEFAULT 1 COMMENT '½è³öÊýÁ¿',
+  `duration` bigint(20) UNSIGNED NOT NULL COMMENT '½è³öÊ±³¤£¬½èÔÄÊ±¼ä¼ÓÕâ¸ö¾ÍÊÇÓ¦¸ÃÒª¹é»¹µÄÊ±¼ä',
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Í¼Êé×´Ì¬£º0Õý³££¬1ÆÆËé£¬2ÆÆËðÑÏÖØ£¬3¶ªÊ§',
+  `penalty` float(10, 0) UNSIGNED NOT NULL DEFAULT 0 COMMENT '·£½ð',
+  `create_timestamp` bigint(20) UNSIGNED NOT NULL COMMENT '½èÔÄÊ±¼ä',
+  `update_timestamp` bigint(20) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'ÐÞ¸ÄÊ±¼ä',
+  `return_timestamp` bigint(20) UNSIGNED NOT NULL DEFAULT 0 COMMENT '¹é»¹Ê±¼ä£¬0±íÊ¾Î´¹é»¹',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 

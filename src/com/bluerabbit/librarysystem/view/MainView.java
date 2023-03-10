@@ -1,5 +1,5 @@
 package com.bluerabbit.librarysystem.view;
-//ssm
+
 
 import java.awt.Font;
 import java.awt.Graphics;
@@ -9,12 +9,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 
 import com.bluerabbit.librarysystem.beans.AdministratorBeans;
@@ -28,29 +23,40 @@ import com.bluerabbit.librarysystem.listener.MainView_exit_MouseListener;
 /**
  * 主界面
  *
- * @author minuy
+ * @author minuhy
  */
-@SuppressWarnings("serial")
 public class MainView extends JFrame {
-    private static AdministratorBeans admin;
-    private JPanel mainWin;
-    private JLabel status;
-    private JLabel adminName;
-    private JLabel adminPhoto;
-    private JLabel adminBack;
-    private JLabel button1;
-    private JLabel button2;
-    private JLabel button3;
-    private JLabel button4;
-    private JLabel exit;
+    /**
+	 * UID
+	 */
+	private static final long serialVersionUID = -893839572059524069L;
+	private static AdministratorBeans admin;
+    private final JPanel mainWin;
+    private final JLabel status;
+    private final JLabel adminName;
+    private final JLabel adminPhoto;
+    private final JLabel adminBack;
+    private final JLabel button1;
+    private final JLabel button2;
+    private final JLabel button3;
+    private final JLabel button4;
+    private final JLabel exit;
+    
+    // 用户头像
+    private static String avater;
 
     /**
      * 主界面
      */
     public MainView(AdministratorBeans admin) {
-        this.admin = admin;
+        MainView.admin = admin;
         mainWin = new JPanel() {
-            @Override
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1858000266892218472L;
+
+			@Override
             protected void paintComponent(Graphics g) {
                 Image img = new ImageIcon("res/background2.png").getImage();
                 g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
@@ -77,7 +83,7 @@ public class MainView extends JFrame {
         //设置窗口大小
         this.setSize(1152, 679);
         //注册关闭事件
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         //窗口居中
         CenterView.CenterByWindow(this);
         //设置容器布局方式为空布局
@@ -89,10 +95,10 @@ public class MainView extends JFrame {
 
         //设置用户名参数
         adminName.setBounds(70, 0, 600, 30);
-        adminName.setFont(new Font("微软雅黑", 1, 27));
+        adminName.setFont(new Font("微软雅黑", Font.BOLD, 27));
 
         status.setBounds(70, 40, 100, 30);
-        status.setFont(new Font("微软雅黑", 3, 17));
+        status.setFont(new Font("微软雅黑", Font.BOLD | Font.ITALIC, 17));
 
         adminName.setText(admin.getAdminName());
         if (admin.isIfsuper()) {
@@ -102,7 +108,7 @@ public class MainView extends JFrame {
         }
 
         ArrayList<String> avatars;
-        int avatarIndex = 0;
+        int avatarIndex;
         // 设置随机头像
         {
             String basePath = "res/avatar/";
@@ -118,10 +124,11 @@ public class MainView extends JFrame {
             Random random = new Random();
             avatarIndex = random.nextInt(avatars.size());
 
-            System.out.println("设置头像：" + avatars.get(avatarIndex));
+            avater = avatars.get(avatarIndex);
+            System.out.println("设置头像：" + avater);
         }
         //设置头像参数
-        setJLabelImageAndSize(5, 5, 60, 60, adminPhoto, avatars.get(avatarIndex));
+        setJLabelImageAndSize(5, 5, 60, 60, adminPhoto, avater);
 
         adminPhoto.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         //设置名片背景参数
@@ -193,10 +200,8 @@ public class MainView extends JFrame {
             if (option == JOptionPane.OK_OPTION) {
                 //用户选择关闭程序，以上代码提示后确认传给父类处理
                 super.processWindowEvent(e);
-            } else {
-                //用户选择不退出程序，这里把关闭事件截取
-                return;
             }
+            //用户选择不退出程序，这里把关闭事件截取
         } else {
             //如果是其他事件，交给父类处理
             super.processWindowEvent(e);
@@ -220,7 +225,7 @@ public class MainView extends JFrame {
     }
 
     public void updateAdmin(AdministratorBeans admin) {
-        this.admin = admin;
+        MainView.admin = admin;
         adminName.setText(admin.getAdminName());
         if (admin.isIfsuper()) {
             status.setText("超级管理员");
@@ -230,11 +235,11 @@ public class MainView extends JFrame {
     }
 
     public boolean isSu() {
-        return this.admin.isIfsuper();
+        return admin.isIfsuper();
     }
 
     public String getAdminAcc() {
-        return this.admin.getAccount();
+        return admin.getAccount();
     }
 
 
@@ -253,8 +258,13 @@ public class MainView extends JFrame {
             }
         }
     }
+    
+    
+    public static String getAvater() {
+		return avater;
+	}
 
-    public static AdministratorBeans getAdmin() {
+	public static AdministratorBeans getAdmin() {
         return admin;
     }
 }

@@ -17,7 +17,12 @@ import java.awt.*;
  * @date 2023/3/8 22:32
  */
 public class BorrowOutView extends JDialog {
-    private final JPanel mainView;
+    /**
+	 * UID
+	 */
+	private static final long serialVersionUID = 7583058679674555406L;
+	
+	private final JPanel mainView;
     private final JPanel contentView;
     private final JPanel functionView;
     private final int windowsHeight;

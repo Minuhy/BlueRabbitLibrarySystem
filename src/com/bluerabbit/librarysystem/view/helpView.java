@@ -54,25 +54,25 @@ public class HelpView extends JDialog {
         //启用窗口关闭
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         //设置窗口大小
-        this.setSize(430, 400);
+        this.setSize(480, 400);
         //设置窗口居中
         CenterView.CenterByWindow(this);
         //设置容器布局方式为空布局
         helpWin.setLayout(null);
 
-        labExplain.setBounds(0, 0, 340, 50);
+        labExplain.setBounds(0, 0, 390, 50);
         labExplain.setBorder(BorderFactory.createTitledBorder("\u8bf4\u660e"));
 
-        labDate.setBounds(0, 1650, 340, 50);
-        labDate.setBorder(BorderFactory.createTitledBorder("Time"));
-        txfThank.setBounds(0, 1550, 340, 50);
+        labDate.setBounds(0, 1650, 390, 50);
+        labDate.setBorder(BorderFactory.createTitledBorder("\u7eaa\u5ff5\u8ba1\u65f6\u5668"));
+        txfThank.setBounds(0, 1550, 390, 50);
         txfThank.setEditable(false);
         txfThank.setBorder(BorderFactory.createTitledBorder("\u611f\u8c22"));
-        txfAbout.setBounds(0, 1600, 340, 50);
+        txfAbout.setBounds(0, 1600, 390, 50);
         txfAbout.setEditable(false);
         txfAbout.setBorder(BorderFactory.createTitledBorder("\u5236\u4f5c\u7ec4"));
-        slpSql.setBounds(0, 80, 340, 1000);
-        slpSql.setBorder(BorderFactory.createTitledBorder("MySQL\u8bed\u53e5\uff1a\uff08\u670d\u52a1\u5668\uff1alocalhost\uff0c\u5bc6\u7801\uff1atsglxt2019\uff09"));
+        slpSql.setBounds(0, 80, 390, 1000);
+        slpSql.setBorder(BorderFactory.createTitledBorder("\u004d\u0079\u0053\u0051\u004c\u8bed\u53e5\uff1a\uff08\u8d26\u53f7\uff1a\u0062\u006c\u0073\uff0c\u5bc6\u7801\uff1a\u0074\u0073\u0067\u006c\u0078\u0074\u0032\u0030\u0031\u0039\uff0c\u670d\u52a1\u5668\uff1a\u006c\u006f\u0063\u0061\u006c\u0068\u006f\u0073\u0074\uff09"));
 
         txfThank.setText("\u611f\u8c22\u8679\u732b\u4fe1\u606f\u8001\u5e08\u7684\u6307\u5bfc\u4e0e\u5e2e\u52a9\u3002");
         txfAbout.setText("\u9879\u76ee\u7ec4\u7ec4\u5458\uff1a\u4e8e\u654f\u54f2\u3001\u66fe\u7433\u7433\u3001\u738b\u666f\u5ead\u3001\u90b9\u4e3d\u654f\u3001\u8096\u96e8\u6668");

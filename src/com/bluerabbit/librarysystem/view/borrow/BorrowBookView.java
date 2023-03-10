@@ -19,7 +19,12 @@ import java.util.Vector;
  * @date 2023/3/8 15:18
  */
 public class BorrowBookView extends JDialog {
-    public  final int BUTTON_SIZE = 50;
+    /**
+	 * UID
+	 */
+	private static final long serialVersionUID = -9040238486787055265L;
+
+	public  final int BUTTON_SIZE = 50;
 
     private final JPanel jPanelBorrow; // 主低面
     private final int windowsHeight; // 窗口高度

@@ -20,7 +20,12 @@ import java.util.Vector;
  * @date 2023/3/9 21:06
  */
 public class BorrowInAndRenewView extends JDialog {
-    private final JPanel mainView;
+    /**
+	 * UID
+	 */
+	private static final long serialVersionUID = 126964319444208811L;
+	
+	private final JPanel mainView;
     private final JPanel contentView;
     private final JPanel functionView;
     private final int windowsHeight;
