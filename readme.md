@@ -21,7 +21,7 @@
 ## 贰、相关技术及开发环境
 
 1. Eclipse 2019（4.12.0）
-2. JDK8
+2. JDK1.8
 3. mysql-connector-java-5.1.47
 4. beautyeye_lnf
 5. Java Swing
@@ -363,7 +363,7 @@ public class BlueRabbitLibrarySystem {
 
 * 重点内容 ：
 
-    将图片标签放在窗体底层面板，然后将窗体转化为JPan的容器，将JPan设为透明，背景图片就设置好了，之后就可以直接在该JPan中添加组件*
+    ***将图片标签放在窗体底层面板，然后将窗体转化为JPan的容器，将JPan设为透明，背景图片就设置好了，之后就可以直接在该JPan中添加组件***
 ```java
 package com.bluerabbit.librarysystem.view;
 
