@@ -615,7 +615,7 @@ public class LoginView_loginButton_ActionListener implements ActionListener {
 
 - SQL脚本文件在登录界面的帮助按钮中（Unicode编码），或者在res/sql/br_library_system.sql中（可能有敏感词被屏蔽掉）
 
-- GitHub地址：[https://github.com/minuhy/BlueRabbitLibrarySystem](https://github.com/minuhy/BlueRabbitLibrarySystem)
+- GitHub地址：[https://github.com/Minuhy/BlueRabbitLibrarySystem](https://github.com/Minuhy/BlueRabbitLibrarySystem)
 
 - Gitee和GitCode上也有，直接搜项目名
 
