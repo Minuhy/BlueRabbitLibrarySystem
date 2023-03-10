@@ -1,5 +1,4 @@
 /*
- Navicat Premium Data Transfer
 
  Source Server         : localhost_3306
  Source Server Type    : MySQL
@@ -11,7 +10,7 @@
  Target Server Version : 50562
  File Encoding         : 65001
 
- Date: 09/03/2023 02:16:04
+ Date: 10/03/2023 19:01:43
 */
 
 SET NAMES utf8mb4;
@@ -50,9 +49,9 @@ INSERT INTO `administrator` VALUES (0, '管理员', 'admin', 'd41d8cd98f00b204e9
 DROP TABLE IF EXISTS `books_info`;
 CREATE TABLE `books_info`  (
   `BookName` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '书名',
-  `SumQuantity` int(11) NOT NULL COMMENT '总册数',
-  `Quantity` int(11) NOT NULL COMMENT '剩余册数',
-  `LendTime` int(11) NOT NULL COMMENT '借出次数',
+  `SumQuantity` int(11) UNSIGNED NOT NULL COMMENT '总册数',
+  `Quantity` int(11) UNSIGNED NOT NULL COMMENT '剩余册数',
+  `LendTime` int(11) UNSIGNED NOT NULL COMMENT '借出次数',
   `BookID` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '书刊编号',
   `BookBarcode` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '书刊条码',
   `BookClassify` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '书刊分类',
@@ -75,19 +74,19 @@ CREATE TABLE `books_info`  (
 -- ----------------------------
 -- Records of books_info
 -- ----------------------------
-INSERT INTO `books_info` VALUES ('毛泽东思想和中国特色社会主义理论体系概论', 5, 2, 5, '00001', '9787040494815', '思想、理论、历史', '毛泽东、中国特色社会主义', '高英', '高等教育出版社', '第6版', '2018-09-01', '图书', '第一书室', '第一书架', 25, '中国特色社会主义的历史', '大二教科书', 313, '260千字');
-INSERT INTO `books_info` VALUES ('浮生物语', 17, 3, 27, '000010', '9367566799036', '小说', '架空、玄幻', '裟椤双树', '上海交通出版社', '第5版', '2018-08-16', '图书', '第五书室', '第四书架', 29.99, '轻快幽默的妖怪历险记', '感动、幻想、提升生活乐趣', 487, '393千字');
-INSERT INTO `books_info` VALUES ('意林2018年合订本', 90, 54, 66, '00002', '9771007384158', '杂志、作文、青春文学', '作文，小小姐', '高英', '意林杂志社', '第1版', '2019-01-01', '期刊', '第三书室', '第二书架', 29.8, '有助于中学生作文提高，解决中学生烦恼的期刊', '期刊合订本', 744, '540千字');
+INSERT INTO `books_info` VALUES ('毛泽东思想和中国特色社会主义理论体系概论', 5, 1, 7, '00001', '9787040494815', '思想、理论、历史', '毛泽东、中国特色社会主义', '高英', '高等教育出版社', '第6版', '2018-09-01', '图书', '第一书室', '第一书架', 25, '中国特色社会主义的历史', '大二教科书', 313, '260千字');
+INSERT INTO `books_info` VALUES ('浮生物语', 17, 0, 30, '000010', '9367566799036', '小说', '架空、玄幻', '裟椤双树', '上海交通出版社', '第5版', '2018-08-16', '图书', '第五书室', '第四书架', 29.99, '轻快幽默的妖怪历险记', '感动、幻想、提升生活乐趣', 487, '393千字');
+INSERT INTO `books_info` VALUES ('意林2018年合订本', 90, 52, 68, '00002', '9771007384158', '杂志、作文、青春文学', '作文，小小姐', '高英', '意林杂志社', '第1版', '2019-01-01', '期刊', '第三书室', '第二书架', 29.8, '有助于中学生作文提高，解决中学生烦恼的期刊', '期刊合订本', 744, '540千字');
 INSERT INTO `books_info` VALUES ('新编刑法罪名适用指南', 8, 7, 12, '00003', '9771557384236', '法律', '刑法 罪名 法律', '熊选国', '人民法院出版', '第1版', '2017-05-01', '期刊', '第三书室', '第二书架', 9.8, '法律刑法的了解', '期刊合订本', 264, '54千字');
-INSERT INTO `books_info` VALUES ('c++程序设计(特别版)', 4, 3, 12, '00004', '9559338384236', '自动化技术、计算机技术', ' c++ 程序设计 软件工程', 'Special', '人民交通出版社', '第2版', '2018-09-03', '图书', '第四书室', '第一书架', 34.6, 'C++语言的了解与掌握', '大一教科书', 504, '344千字');
+INSERT INTO `books_info` VALUES ('c++程序设计(特别版)', 4, 2, 13, '00004', '9559338384236', '自动化技术、计算机技术', ' c++ 程序设计 软件工程', 'Special', '人民交通出版社', '第2版', '2018-09-03', '图书', '第四书室', '第一书架', 34.6, 'C++语言的了解与掌握', '大一教科书', 504, '344千字');
 INSERT INTO `books_info` VALUES ('英语专业四级备考', 15, 3, 26, '00005', '9534457984236', '美洲诸语言', '四级 英语', '盛萧', '地质出版社', '第5版', '2019-02-23', '图书', '第四书室', '第三书架', 26, '备考四级', '大学英语四级考试提炼', 198, '194千字');
 INSERT INTO `books_info` VALUES ('外国法律史研究', 10, 7, 9, '00006', '7715534569036', '法律', '刑法 罪名 法律', '何勤华', '中国政法大学出版社', '第3版', '2018-09-01', '图书', '第三书室', '第二书架', 30.8, '法律刑法的了解', '法律刑法的了解', 334, '670千字');
-INSERT INTO `books_info` VALUES ('编程黑马真言', 13, 9, 8, '00007', '4563552169036', '自动化技术、计算机技术', '软件工具、工具软件', '王轶男', '人民交通出版社', '第1版', '2018-04-24', '图书', '第四书室', '第二书架', 35, '计算机语言的发展历程', '编程语言的拓展', 264, '145千字');
+INSERT INTO `books_info` VALUES ('编程黑马真言', 13, 7, 10, '00007', '4563552169036', '自动化技术、计算机技术', '软件工具、工具软件', '王轶男', '人民交通出版社', '第1版', '2018-04-24', '图书', '第四书室', '第二书架', 35, '计算机语言的发展历程', '编程语言的拓展', 264, '145千字');
 INSERT INTO `books_info` VALUES ('默读', 13, 0, 25, '00008', '2453466799036', '小说', '刑侦 犯罪', 'priest', '人民交通出版社', '第1版', '2018-05-16', '图书', '第五书室', '第三书架', 36.8, '救赎，烧脑，破案', '提升推理能力', 564, '445千字');
 INSERT INTO `books_info` VALUES ('毛泽东理论概述', 9, 2, 7, '00009', '4652377494815', '思想、理论、历史', '毛泽东、毛泽东理论、中国特色社会主义', '教育部社会科学研究所', '高等教育出版社', '第7版', '2019-04-11', '图书', '第一书室', '第一书架', 32, '中国特色社会主义的历史、毛泽东理论的发展历程', '毛泽东理论', 453, '540千字');
 INSERT INTO `books_info` VALUES ('考研数学高等数学辅导讲义·基础篇', 12, 12, 0, '00011', '9787576404319', '考研', '讲义、高数、数学', '汤家凤', '中国政法大学出版社', '第1版', '2023-03-08', '图书', '第一书室', '第二书架', 68, '一本受大学生喜欢的考研高数辅导书。', '无', 126, '205千字');
 INSERT INTO `books_info` VALUES ('毛泽东思想和中国特色社会主义理论体系概论', 5, 2, 5, '00071', '9787040494815', '思想、理论、历史', '毛泽东、中国特色社会主义', '高英', '高等教育出版社', '第6版', '2018-09-01', '图书', '第一书室', '第一书架', 25, '中国特色社会主义的历史', '大二教科书', 313, '260千字');
-INSERT INTO `books_info` VALUES ('意林2018年合订本', 90, 54, 66, '00702', '9771007384158', '杂志、作文、青春文学', '作文，小小姐', '高英', '意林杂志社', '第1版', '2019-01-01', '期刊', '第三书室', '第二书架', 29.8, '有助于中学生作文提高，解决中学生烦恼的期刊', '期刊合订本', 744, '540千字');
+INSERT INTO `books_info` VALUES ('意林2018年合订本', 90, 20, 27, '00702', '9771007384158', '杂志、作文、青春文学', '作文，小小姐', '高英', '意林杂志社', '第1版', '2019-01-01', '期刊', '第三书室', '第二书架', 29.8, '有助于中学生作文提高，解决中学生烦恼的期刊', '期刊合订本', 744, '540千字');
 
 -- ----------------------------
 -- Table structure for reader
@@ -131,19 +130,32 @@ CREATE TABLE `t_borrow`  (
   `borrow_admin_id` int(11) NOT NULL COMMENT '借出操作者',
   `return_admin_id` int(11) NULL DEFAULT NULL COMMENT '归还操作者',
   `book_number` int(10) UNSIGNED NOT NULL DEFAULT 1 COMMENT '借出数量',
-  `duration` bigint(20) NOT NULL COMMENT '借出时长，借阅时间加这个就是应该要归还的时间',
-  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '图书状态：0正常，1破碎，2破损严重，3丢失',
-  `penalty` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0' COMMENT '罚金',
+  `duration` bigint(20) UNSIGNED NOT NULL COMMENT '借出时长，借阅时间加这个就是应该要归还的时间',
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '图书状态：0正常，1破碎，2破损严重，3丢失',
+  `penalty` float(10, 0) UNSIGNED NOT NULL DEFAULT 0 COMMENT '罚金',
   `create_timestamp` bigint(20) UNSIGNED NOT NULL COMMENT '借阅时间',
   `update_timestamp` bigint(20) UNSIGNED NOT NULL DEFAULT 0 COMMENT '修改时间',
   `return_timestamp` bigint(20) UNSIGNED NOT NULL DEFAULT 0 COMMENT '归还时间，0表示未归还',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of t_borrow
 -- ----------------------------
-INSERT INTO `t_borrow` VALUES (1, '5056', '00001', 1, 1, 1, 6666, 0, '0', 32131231, 0, 56);
-INSERT INTO `t_borrow` VALUES (2, '5056', '00001', 1, 1, 11, 46465, 0, '0', 234523455, 0, 0);
+INSERT INTO `t_borrow` VALUES (1, '5056', '00001', 1, 1, 1, 6666, 0, 0, 32131231, 0, 56);
+INSERT INTO `t_borrow` VALUES (2, '5056', '00001', 1, 1, 11, 9293132, 2, 1, 234523455, 12, 12);
+INSERT INTO `t_borrow` VALUES (4, '5056', '00001', 0, NULL, 1, 92000000, 0, 0, 1678328726532, 0, 0);
+INSERT INTO `t_borrow` VALUES (5, '5256', '00004', 0, NULL, 1, 92000000, 0, 0, 1678329110424, 0, 0);
+INSERT INTO `t_borrow` VALUES (6, '5056', '00009', 0, NULL, 1, 1964596224, 0, 0, 1678361846829, 0, 0);
+INSERT INTO `t_borrow` VALUES (7, '5056', '00001', 0, NULL, 1, 15552000000, 0, 0, 1678363298525, 0, 0);
+INSERT INTO `t_borrow` VALUES (8, '5056', '00001', 0, 0, 1, 2592000000, 0, 10, 1678365120956, 1678445264698, 1678445264698);
+INSERT INTO `t_borrow` VALUES (9, '5956', '00004', 0, NULL, 1, 2592000000, 0, 0, 1678418785460, 0, 0);
+INSERT INTO `t_borrow` VALUES (10, '5356', '00007', 0, NULL, 1, 2592000000, 0, 0, 1678419222757, 0, 0);
+INSERT INTO `t_borrow` VALUES (11, '5056', '00007', 0, NULL, 1, 2592000000, 0, 0, 1678419237168, 0, 0);
+INSERT INTO `t_borrow` VALUES (12, '5156', '000010', 0, NULL, 1, 2592000000, 0, 0, 1678419268072, 0, 0);
+INSERT INTO `t_borrow` VALUES (13, '5156', '000010', 0, NULL, 1, 2592000000, 0, 0, 1678419274655, 0, 0);
+INSERT INTO `t_borrow` VALUES (14, '5156', '000010', 0, NULL, 1, 2592000000, 0, 0, 1678419281022, 0, 0);
+INSERT INTO `t_borrow` VALUES (15, '5056', '00002', 0, NULL, 1, 2592000000, 0, 0, 1678419696487, 0, 0);
+INSERT INTO `t_borrow` VALUES (16, '5056', '00002', 0, 0, 1, 5184000000, 0, 0, 1678419702617, 1678445472187, 0);
 
 SET FOREIGN_KEY_CHECKS = 1;
