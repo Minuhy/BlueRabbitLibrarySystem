@@ -92,6 +92,7 @@ Password varchar(32) not null,
 ifsuper boolean not null
 )default charset=utf8;
 ```
+
 ![管理员表](images/SQLAdmin.jpg)
 
 3. 图书信息表
@@ -120,6 +121,7 @@ BookPage int comment '页数' ,
 WordsNumber varchar(20) comment '字数'
 )default charset=utf8 comment '图书信息表'; 
 ```
+
 ![图书信息表](images/SQLBook.jpg)
 
 4. 读者信息表
@@ -134,6 +136,7 @@ Class char(10) comment '班级' ,
 TelNo char(20) comment '电话' 
 )default charset=utf8;
 ```
+
 ![读者信息表](images/SQLReader.jpg)
 
 5. 借阅信息表
@@ -155,17 +158,21 @@ CREATE TABLE `t_borrow`  (
   PRIMARY KEY (`id`) USING BTREE
 )default charset=utf8;
 ```
+
 ![借阅信息表](images/Snipaste_2023-03-09_09-42-35.png)
 
 6. 表关系
+
 ![表关系](images/SQL.jpg)
 
 ## 伍、项目结构
 
 项目分有数据层、视图层、监听层、服务层
+
 ![项目](images/jiegou.jpg)
 
 项目分包
+
 ![项目包](images/ssss.jpg)
 
 视图层主要是JavaSwing类，给用户提供交互界面；
